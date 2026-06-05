@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.LoginMedico">
+   <children>
+      <TextField fx:id="emailLogin" layoutX="151.0" layoutY="200.0" promptText="Digite o seu email" />
+      <Label layoutX="74.0" layoutY="121.0" prefHeight="18.0" prefWidth="392.0" text="MENSAGEM INDICANDO QUE É UMA TELA DE LOGIN PARA OS MÉDICOS" />
+      <Label layoutX="151.0" layoutY="241.0" text="Senha" />
+      <Label layoutX="151.0" layoutY="182.0" text="Email" />
+      <PasswordField fx:id="senhaLogin" layoutX="151.0" layoutY="259.0" promptText="Digite a sua senha" />
+      <Button fx:id="botaoConfirmar" layoutX="350.0" layoutY="343.0" mnemonicParsing="false" onAction="#confirmarLogin" text="Confirmar" />
+      <Button fx:id="botaoVoltar" layoutX="117.0" layoutY="343.0" mnemonicParsing="false" onAction="#voltarTelaAnterior" text="Voltar" />
+   </children>
+</AnchorPane>

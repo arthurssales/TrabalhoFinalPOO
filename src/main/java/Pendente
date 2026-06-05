@@ -1,0 +1,6 @@
+1. Verificação do cpf com 11 digitos
+2. Desabilitar botão de confirmar cadastro caso algum campo não esteja preenchido
+3. Tratar exceções;
+
+
+Modelar o projeto
