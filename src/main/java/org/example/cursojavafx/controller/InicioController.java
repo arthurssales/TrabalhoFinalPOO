@@ -36,7 +36,7 @@ public class Inicio {
 
     @FXML
     public void abrirTelaCadastro(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaCadastro.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaCadastroPaciente.fxml"));
 
         Scene scene = new Scene(loader.load(),800,600);
 

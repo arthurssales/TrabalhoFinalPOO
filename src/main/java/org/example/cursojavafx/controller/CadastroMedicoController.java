@@ -1,5 +1,7 @@
 package org.example.cursojavafx.controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import org.example.cursojavafx.model.Cardiologista;
 import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.model.Pediatra;
@@ -17,6 +19,8 @@ public class CadastroMedico {
 
     }
 
+    @FXML
+    Button confirmarCadastro;
 
 
 

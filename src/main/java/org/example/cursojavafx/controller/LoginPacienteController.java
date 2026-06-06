@@ -15,7 +15,7 @@ import org.example.cursojavafx.model.Paciente;
 import java.io.IOException;
 
 public class LoginPaciente{
-    CadastroPaciente cadastroPaciente = new CadastroPaciente();
+    CadastroPacienteController cadastroPaciente = new CadastroPacienteController();
 
     @FXML private TextField emailLogin;
     @FXML private TextField senhaLogin;
