@@ -1,7 +1,6 @@
-package org.example.cursojavafx;
+package org.example.cursojavafx.model;
 
 import org.example.cursojavafx.conecction.ConexaoPacientes;
-import org.example.cursojavafx.model.Paciente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,11 +12,7 @@ public class PacienteDAO {
 
         String sql = "INSERT INTO pacientes " + "(nome,sobrenome/*,cpf*/,email,sexo,senha, /*telefone*/) " + "VALUES (?, ?, ?, ?, ?)";
 
-        try (
-                Connection conn = ConexaoPacientes.conectar();
-                PreparedStatement stmt =
-                        conn.prepareStatement(sql)
-        ) {
+        try (Connection conn = ConexaoPacientes.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, paciente.getNome());
             stmt.setString(2, paciente.getSobrenome());
@@ -35,11 +30,7 @@ public class PacienteDAO {
             System.out.println("Paciente cadastrado!");
 
         } catch (Exception e) {
-
-            System.out.println(
-                    "Erro ao cadastrar paciente."
-            );
-
+            System.out.println("Erro ao cadastrar paciente.");
             e.printStackTrace();
         }
     }
@@ -56,6 +47,7 @@ public class PacienteDAO {
             return rs.next();
         } catch (Exception e) {
             e.printStackTrace();
+
             return false;
         }
     }
