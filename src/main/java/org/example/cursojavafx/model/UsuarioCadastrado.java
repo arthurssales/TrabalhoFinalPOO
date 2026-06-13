@@ -6,15 +6,15 @@ public abstract class UsuarioCadastrado {
     protected String email;
     protected String senha;
     protected String sexo;
+    protected int idade;
 
-    protected int dia, mes, ano; //nascimento
-
-    public UsuarioCadastrado(String nome, String email, String senha, String sobrenome, String sexo){
+    public UsuarioCadastrado(String nome, String sobrenome, String email, String senha,String sexo,int idade){
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.senha = senha;
         this.sexo = sexo;
+        this.idade = idade;
     }
 
     public String getSexo() {
@@ -23,22 +23,6 @@ public abstract class UsuarioCadastrado {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    public int getMes() {
-        return mes;
-    }
-
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
-
-    public int getDia() {
-        return dia;
-    }
-
-    public void setDia(int dia) {
-        this.dia = dia;
     }
 
     public String getSenha() {
@@ -67,6 +51,14 @@ public abstract class UsuarioCadastrado {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     public void setEmail(String email) {

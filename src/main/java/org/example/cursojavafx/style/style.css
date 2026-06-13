@@ -1,0 +1,10 @@
+.botao-plano {
+    -fx-background-color: #6EC1E4;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.botao-plano:hover {
+    -fx-background-color: #5AB0D3;
+    -fx-cursor: hand;
+}

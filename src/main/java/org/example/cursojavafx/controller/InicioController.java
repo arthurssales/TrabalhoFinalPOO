@@ -8,23 +8,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
+import org.example.cursojavafx.service.CadastroUsuarioService;
 
 import java.io.IOException;
 
-public class Inicio {
+public class InicioController {
 
     @FXML
-    Button botaoPaciente;
+    private Button botaoPaciente;
 
     @FXML
-    Button botaoMedico;
+    private Button botaoMedico;
 
     @FXML
-    Button botaoCadastro;
-
-    @FXML
-    public void abrirTelaLoginPaciente(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaLoginPaciente.fxml"));
+    private void fazerLoginPaciente(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaNovaLoginPaciente.fxml"));
 
         Scene scene = new Scene(loader.load(),800,600);
 
@@ -35,21 +33,7 @@ public class Inicio {
     }
 
     @FXML
-    public void abrirTelaCadastro(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaCadastroPaciente.fxml"));
-
-        Scene scene = new Scene(loader.load(),800,600);
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        stage.setScene(scene);
-
-        System.out.println("Botão apertado cadastro");
-    }
-
-
-    @FXML
-    public void abrirTelaLoginMedico(ActionEvent event) throws IOException{
+    private void fazerLoginMedico(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaLoginMedico.fxml"));
 
         Scene scene = new Scene(loader.load(),800,600);
@@ -58,5 +42,9 @@ public class Inicio {
 
         stage.setScene(scene);
         System.out.println("Botão apertado médico");
+    }
+
+    public InicioController(){
+        CadastroUsuarioService.cadastroInicial();
     }
 }

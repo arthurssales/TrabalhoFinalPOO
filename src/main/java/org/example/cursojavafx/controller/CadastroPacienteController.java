@@ -1,155 +1,134 @@
 package org.example.cursojavafx.controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Paciente;
+import org.example.cursojavafx.service.CadastroUsuarioService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-public class CadastroPaciente {
+public class CadastroPacienteController implements Comandos{
 
-    private ArrayList<Paciente> pacientesCadastrados = new ArrayList<>();
+    @FXML private RadioButton botaoMasculino;
+    @FXML private RadioButton botaoFeminino;
 
-    public CadastroPaciente(){
-        Paciente paciente1 = new Paciente("Eduardo","dudu@gmail.com","1234","Lucas","Masculino",12345);
-        Paciente paciente2 = new Paciente("Luiz","luiz@hotmail.com","1234","Miguel","Masculino",1234);
-        Paciente paciente3 = new Paciente("Arthur","arthursales@gmail.com","1234","Sales","Masculino",123);
+    @FXML private Button botaoVoltar;
+    @FXML private Button botaoConfirmar;
 
-        pacientesCadastrados.add(paciente1);
-        pacientesCadastrados.add(paciente2);
-        pacientesCadastrados.add(paciente3);
+    @FXML private TextField nomeCadastro;
+    @FXML private TextField sobrenomeCadastro;
+    @FXML private TextField emailCadastro;
+    @FXML private TextField senhaCadastro;
+    @FXML private TextField confirmarSenhaCadastro;
+    @FXML private TextField cpfCadastro;
+    @FXML private DatePicker dataDeNascimento;
+
+    private boolean camposVazios = true;
+
+    @FXML
+    public void selecionarSexo(ActionEvent event){
+        if(botaoMasculino.isSelected())
+            sexo = "Masculino";
+
+        else if(botaoFeminino.isSelected())
+            sexo = "Feminino";
+        else
+            sexo = null;
     }
 
-    @FXML Button botaoVoltar;
-    @FXML Button botaoConfirmar;
-
-    @FXML TextField nomeCadastro;
-    @FXML TextField sobrenomeCadastro;
-    @FXML TextField senhaCadastro;
-    @FXML TextField emailCadastro;
-    @FXML TextField cpfCadastro;
-
-    /**TRATAR A EXCESSÃO DO CPF **/
-    //private int cpf = Integer.parseInt(cpfCadastro.getText());
-
+    /**TRATAR A EXCESSÃO DO CPF E IDADE
+     * - Não podem ser menores que 0
+     * - CPF deve ter o mínimo de 11 caracteres
+     * - Idade deve ser menor que 120**/
     private String sexo;
-
-    private int botaoMApertado = 0;
-    private int botaoFApertado = 0;
-    @FXML
-    public void botaoMasculino(){
-        botaoMApertado++;
-        if(botaoMApertado%2 == 0 && botaoFApertado%2 != 0)
-            sexo = "Feminino";
-        else
-            sexo = "Masculino";
-    }
+    private int idade;
 
     @FXML
-    public void botaoFeminino(){
-        botaoFApertado++;
-        if(botaoFApertado%2 == 0 && botaoMApertado%2 != 0)
-            sexo = "Masculino";
-        else
-            sexo = "Feminino";
-    }
-
-        /*nomeCadastro.textProperty().addListener((obs, oldVal, newVal) -> verificarCampos());
-        sobrenomeCadastro.textProperty().addListener((obs,oldVal,newVal) -> verificarCampos());
-        emailCadastro.textProperty().addListener((obs, oldVal, newVal) -> verificarCampos());
-        senhaCadastro.textProperty().addListener((obs, oldVal, newVal) -> verificarCampos());*/
-
-    public void confirmarCadastro(){
-        /*ENQUANTO O USUÁRIO NÃO CONCLUIR OS DADOS, A OPÇAO DE CONFIRMAR DEVE SUMIR*/
-        boolean emailExiste = false;
-        int i = 1;
-
-        for(Paciente paciente : pacientesCadastrados){
-            System.out.println("Passou " + i + " vezes");
-            if(emailCadastro.getText().equals(paciente.getEmail())){
-                emailExiste = true;
-                break;
-            }
+    public void confirmar(){
+        /*try{
+            int cpf = Integer.parseInt(cpfCadastro.getText());
+        }catch (NumberFormatException e){
+            System.out.println();
         }
 
-        if(emailExiste){
-            System.out.println("Email existe!");
+        try{
+            idade = Integer.parseInt(idadeCadastro.getText());
+        }catch (NumberFormatException ex){
+        }*/
+
+        verificarCampos();
+        if(camposVazios){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setHeaderText("Email existente!");
-            alerta.setContentText("ERRO! Esse email já foi cadastrado!");
+            alerta.setHeaderText("Campo vazio!");
+            alerta.setContentText("Preencha todos os campos para confirmar o cadastro!");
             alerta.showAndWait();
         }
-        else {
+
+        else if(!CadastroUsuarioService.autenticarEmail(emailCadastro.getText())) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setContentText("Esse email já foi registrado!");
+            alerta.showAndWait();
+        }
+
+        else if(!CadastroUsuarioService.compararSenhas(senhaCadastro.getText(),confirmarSenhaCadastro.getText())){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setHeaderText("Senhas incompatíveis!");
+            alerta.setContentText("As senhas devem ser iguais!");
+            alerta.showAndWait();
+        }
+
+        else{
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setContentText("Cadastro realizado com sucesso!");
-            alerta.setHeaderText("Usuário cadastrado!");
+            alerta.setContentText("Usuário cadastrado!");
             alerta.showAndWait();
 
-            System.out.println("Paciente cadastrado com sucesso!");
-            Paciente pacienteCadastrado = new Paciente(nomeCadastro.getText(),emailCadastro.getText(),senhaCadastro.getText(),sobrenomeCadastro.getText(),sexo,12);
-            pacientesCadastrados.add(pacienteCadastrado);
+            Paciente pacienteCadastrado = new Paciente(nomeCadastro.getText(),sobrenomeCadastro.getText(),emailCadastro.getText(),senhaCadastro.getText(),sexo,idade);
+            CadastroUsuarioService.cadastrar(pacienteCadastrado);
 
             System.out.println("Nome: " + pacienteCadastrado.getNome());
             System.out.println("email: " + pacienteCadastrado.getEmail());
             System.out.println("senha: " + pacienteCadastrado.getSenha());
-            System.out.println("Sexo: " + pacienteCadastrado.getSexo());
-
+            System.out.println("idade: " + pacienteCadastrado.getIdade());
+            System.out.println("sexo: " + pacienteCadastrado.getSexo());
 
             nomeCadastro.setText(null);
+            sobrenomeCadastro.setText(null);
             emailCadastro.setText(null);
             senhaCadastro.setText(null);
-            sobrenomeCadastro.setText(null);
+            confirmarSenhaCadastro.setText(null);
+            //idadeCadastro.setText(null);
             cpfCadastro.setText(null);
-
-            /*----------DEBUG------------------*/
-            for(Paciente paciente : pacientesCadastrados){
-                System.out.printf("Nome completo: %s %s - Email: %s - Senha: %s - cpf: %d - sexo: %s\n",
-                        paciente.getNome(),
-                        paciente.getSobrenome(),
-                        paciente.getEmail(),
-                        paciente.getSenha(),
-                        paciente.getCpf(),
-                        paciente.getSexo());
-            }
+            sexo = null;
         }
     }
 
-    public void verificarCampos(){
-        boolean camposVazios =
-                nomeCadastro.getText().isEmpty()
-                || emailCadastro.getText().isEmpty()
-                || senhaCadastro.getText().isEmpty()
-                || sobrenomeCadastro.getText().isEmpty()
-                || cpfCadastro.getText().isEmpty();
-
-        botaoConfirmar.setDisable(camposVazios);
-    }
-
     @FXML
-    public void voltarTelaAnterior(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaInicial.fxml"));
-
-        Scene scene = new Scene(loader.load(),800,600);
-
+    public void voltar(ActionEvent event)throws IOException{
+        FXMLLoader loader;
+        loader = new FXMLLoader(HelloApplication.class.getResource("TelaNovaLoginPaciente.fxml"));
+        Scene scene = new Scene(loader.load());
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         stage.setScene(scene);
     }
 
+    private void verificarCampos(){
+        String nome = nomeCadastro.getText();
+        String sobrenome = sobrenomeCadastro.getText();
+        String email = emailCadastro.getText();
+        String senha = senhaCadastro.getText();
+        String confirmarSenha = senhaCadastro.getText();
 
-    public ArrayList<Paciente> getPacientesCadastrados() {
-        return pacientesCadastrados;
-    }
-
-    public void setPacientesCadastrados(ArrayList<Paciente> pacientesCadastrados) {
-        this.pacientesCadastrados = pacientesCadastrados;
-    }
+        camposVazios = nome == null ||
+                sobrenome == null ||
+                email == null ||
+                senha == null ||
+                confirmarSenha == null ||
+                sexo == null;
+        }
 }

@@ -10,56 +10,43 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FF;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.Inicio">
-   <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #6fc5dd;" styleClass="parent" />
-      <Pane layoutX="300.0" prefHeight="600.0" prefWidth="505.0" style="-fx-background-color: #FFF;">
-         <children>
-            <Button fx:id="botaoCadastro" layoutX="259.0" layoutY="446.0" mnemonicParsing="false" onAction="#abrirTelaLoginCadastro" style="-fx-background-color: #6fc5dd;" text="Cadastre-se" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="botaoPaciente" layoutX="86.0" layoutY="363.0" mnemonicParsing="false" onAction="#abrirTelaLoginPaciente" prefHeight="5.0" prefWidth="100.0" style="-fx-background-color: #6fc5dd;" text="Clique aqui" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="botaoMedico" layoutX="343.0" layoutY="363.0" mnemonicParsing="false" onAction="#abrirTelaLoginMedico" prefHeight="0.0" prefWidth="100.0" style="-fx-background-color: #6fc5dd;" text="Clique aqui" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label layoutX="14.0" layoutY="44.0" text="NOME DA CLINICA">
-               <font>
-                  <Font name="Impact" size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="31.0" layoutY="187.0" prefHeight="26.0" prefWidth="198.0" text="Faça login como paciente">
-               <font>
-                  <Font name="Century Gothic" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="83.0" layoutY="449.0" opacity="0.54" text="Não tem uma conta?">
-               <font>
-                  <Font name="Century Gothic" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="299.0" layoutY="187.0" prefHeight="26.0" prefWidth="172.0" text="Faça login como médico">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="115.0" fitWidth="107.0" layoutX="83.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../OneDrive/POO_Arthur/Paciente.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="115.0" fitWidth="1107.0" layoutX="330.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../OneDrive/POO_Arthur/Medico.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.InicioController">
+   <Pane layoutX="250.0" layoutY="50.0" prefHeight="550.0" prefWidth="550.0" style="-fx-background-color: #FFF;">
+      <Button fx:id="botaoPaciente" layoutX="92.0" layoutY="358.0" mnemonicParsing="false" onAction="#fazerLoginPaciente" prefHeight="5.0" prefWidth="100.0" style="-fx-background-color: #6fc5dd;" text="Clique aqui" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="botaoMedico" layoutX="343.0" layoutY="358.0" mnemonicParsing="false" onAction="#fazerLoginMedico" prefHeight="0.0" prefWidth="100.0" style="-fx-background-color: #6fc5dd;" text="Clique aqui" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="114.0" layoutY="24.0" text="ESSÊNCIA SAÚDE">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="97.0" layoutY="158.0" prefHeight="36.0" prefWidth="67.0" text="Paciente">
+         <font>
+            <Font name="Century Gothic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="350.0" layoutY="158.0" prefHeight="36.0" prefWidth="67.0" text="Médico">
+         <font>
+            <Font name="Century Gothic" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="129.0" fitWidth="140.0" layoutX="66.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../imagem/Paciente.jpg" />
+      </ImageView>
+      <ImageView fitHeight="129.0" fitWidth="144.0" layoutX="319.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../imagem/Medico.png" />
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="200.0" preserveRatio="true">
+         <Image url="@../../../imagem/Logo.png" />
+      </ImageView>
+   </Pane>
+   <VBox layoutY="50.0" prefHeight="550.0" prefWidth="250.0" style="-fx-background-color: #6fc5dd;" />
+   <VBox prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000;" />
 </AnchorPane>

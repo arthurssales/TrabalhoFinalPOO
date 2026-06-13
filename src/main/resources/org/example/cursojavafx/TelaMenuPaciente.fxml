@@ -1,32 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.PacienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.MenuPacienteController">
    <children>
-      <Button fx:id="botaoExames" layoutX="108.0" layoutY="221.0" mnemonicParsing="false" onAction="#verExames" text="Exames" />
-      <Button fx:id="botaoHistorico" layoutX="108.0" layoutY="345.0" mnemonicParsing="false" onAction="#verHistorico" text="Histórico" />
-      <Button fx:id="botaoConsulta" layoutX="539.0" layoutY="227.0" mnemonicParsing="false" onAction="#marcarConsulta" text="Marcar Consulta" />
-      <Label layoutX="108.0" layoutY="13.0" text="Seja bem vindo,">
+      <Label fx:id="boasVindas" layoutX="350.0" layoutY="63.0" text="Seja bem vindo,">
          <font>
             <Font name="Century Gothic" size="25.0" />
          </font>
       </Label>
-      <Text fx:id="nomePaciente" layoutX="420.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1.0">
+      <Pane layoutY="50.0" prefHeight="550.0" prefWidth="250.0" style="-fx-background-color: #6fc5dd;">
+         <children>
+            <Button fx:id="botaoDados" layoutX="14.0" layoutY="152.0" mnemonicParsing="false" onAction="#verDados" prefHeight="40.0" prefWidth="122.0" style="-fx-background-color: #000000; -fx-background-radius: 100;" text="Dados" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../imagem/perfilUsuario.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="botaoAlteraSenha" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#alterarSenha" prefHeight="40.0" prefWidth="122.0" style="-fx-background-color: #000000; -fx-background-radius: 100;" text="Alterar senha" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../imagem/Senha.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="botaoSair" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#sair" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000; -fx-background-radius: 100;" text="Sair" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../imagem/PortaSair.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Label fx:id="nomePaciente" layoutX="551.0" layoutY="63.0" prefHeight="32.0" prefWidth="242.0" text="Label">
          <font>
             <Font name="Century Gothic" size="25.0" />
          </font>
-      </Text>
-      <Button layoutX="545.0" layoutY="345.0" mnemonicParsing="false" text="Cancelar Consulta" />
-      <Button layoutX="206.0" layoutY="505.0" mnemonicParsing="false" text="Voltar" />
-      <Label layoutX="322.0" layoutY="13.0" text="[Nome]">
+      </Label>
+      <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="250.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../imagem/Logo.png" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000;" />
+      <Label layoutX="282.0" layoutY="188.0" text="Fazer consulta">
          <font>
-            <Font name="Century Gothic" size="25.0" />
+            <Font name="Century Gothic" size="18.0" />
          </font>
+         <graphic>
+            <Button fx:id="botaoConsulta" minWidth="100.0" mnemonicParsing="false" onAction="#marcarConsulta" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #FFF;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagem/Calendario.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </graphic>
+      </Label>
+      <Label layoutX="282.0" layoutY="361.0" text="Cancelar consulta">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+         <graphic>
+            <Button fx:id="botaoCancelaConsulta" mnemonicParsing="false" onAction="#cancelarConsulta" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #FFF;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagem/Cancelar.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </graphic>
+      </Label>
+      <Label layoutX="350.0" layoutY="496.0" text="Ver exames / Receitas">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+         <graphic>
+            <Button fx:id="botaoExames" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verExames" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #FFF;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagem/Prancheta.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </graphic>
+      </Label>
+      <Label layoutX="555.0" layoutY="361.0" text="Histórico">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+         <graphic>
+            <Button fx:id="botaoHistorico" mnemonicParsing="false" onAction="#verHistorico" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #FFF;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagem/Relogio.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </graphic>
+      </Label>
+      <Label layoutX="555.0" layoutY="188.0" text="Financeiro">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+         <graphic>
+            <Button fx:id="botaoFinanceiro" mnemonicParsing="false" onAction="#mostrarCustos" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #FFF;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagem/cifrao3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </graphic>
       </Label>
    </children>
 </AnchorPane>

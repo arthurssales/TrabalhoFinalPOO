@@ -1,6 +1,7 @@
-package org.example.cursojavafx.model;
+package org.example.cursojavafx.dao;
 
 import org.example.cursojavafx.conecction.ConexaoPacientes;
+import org.example.cursojavafx.model.Paciente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

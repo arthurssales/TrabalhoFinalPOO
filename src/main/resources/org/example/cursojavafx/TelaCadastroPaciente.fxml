@@ -2,13 +2,14 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -16,106 +17,68 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.CadastroPacienteController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="254.0" style="-fx-background-color: #6fc5dd;">
+      <Pane layoutX="250.0" layoutY="50.0" prefHeight="550.0" prefWidth="550.0" style="-fx-background-color: #FFF;">
          <children>
-            <Label prefHeight="45.0" prefWidth="226.0" text="PROPAGANDA!!!!!!">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label text="Não permitir que masculino e feminino sejam marcados simultaneamente" />
-            <Label prefHeight="18.0" prefWidth="307.0" text="PRIMEIRO AS INFORMAÇÕES DEVEM SER PREENCHIDAS " />
-         </children>
-      </VBox>
-      <Pane layoutX="249.0" prefHeight="600.0" prefWidth="551.0" style="-fx-background-color: #FFF;">
-         <children>
-            <Label layoutX="73.0" layoutY="282.0" text="Data de nascimento" />
-            <Label layoutX="300.0" layoutY="382.0" text="Criar senha" />
-            <Button fx:id="botaoConfirmar" layoutX="350.0" layoutY="533.0" mnemonicParsing="false" onAction="#confirmarCadastro" style="-fx-background-color: #6fc5dd;" text="Confirmar" textFill="WHITE">
+            <Label layoutX="90.0" layoutY="376.0" text="Criar senha" />
+            <Button fx:id="botaoConfirma" layoutX="391.0" layoutY="503.0" mnemonicParsing="false" onAction="#confirmar" style="-fx-background-color: #6fc5dd;" text="Confirmar" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <TextField fx:id="sobrenomeCadastro" layoutX="300.0" layoutY="136.0">
+            <TextField fx:id="sobrenomeCadastro" layoutX="90.0" layoutY="246.0" promptText="Digite o seu sobrenome">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <Button fx:id="botaoVoltar" layoutX="87.0" layoutY="533.0" mnemonicParsing="false" onAction="#voltarTelaAnterior" style="-fx-background-color: #6fc5dd;" text="Voltar" textFill="WHITE">
+            <Button fx:id="botaoVolta" layoutX="102.0" layoutY="503.0" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #6fc5dd;" text="Voltar" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label layoutX="300.0" layoutY="282.0" text="Selecionar plano" />
-            <Label layoutX="300.0" layoutY="122.0" text="Sobrenome" />
-            <TextField fx:id="cpfCadastro" layoutX="73.0" layoutY="223.0" promptText="___.___.___-__">
+            <Label layoutX="90.0" layoutY="229.0" text="Sobrenome" />
+            <TextField fx:id="cpfCadastro" layoutX="305.0" layoutY="163.0" promptText="___.___.___-__">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <Label layoutX="73.0" layoutY="122.0" text="Nome " />
-            <Label layoutX="300.0" layoutY="206.0" text="Sexo" />
-            <TextField fx:id="emailCadastro" layoutX="73.0" layoutY="403.0">
+            <Label layoutX="90.0" layoutY="144.0" text="Nome " />
+            <TextField fx:id="emailCadastro" layoutX="90.0" layoutY="311.0" promptText="exemplo@paciente.com">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <MenuButton layoutX="73.0" layoutY="305.0" mnemonicParsing="false">
-              <items>
-                <MenuItem mnemonicParsing="false" />
-                <MenuItem mnemonicParsing="false" />
-              </items>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </MenuButton>
-            <MenuButton layoutX="125.0" layoutY="305.0" mnemonicParsing="false">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </MenuButton>
-            <SplitMenuButton layoutX="183.0" layoutY="305.0" mnemonicParsing="false">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </SplitMenuButton>
-            <RadioButton layoutX="400.0" layoutY="227.0" mnemonicParsing="false" onAction="#botaoFeminino" text="Feminino">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></RadioButton>
-            <RadioButton layoutX="300.0" layoutY="227.0" mnemonicParsing="false" onAction="#botaoMasculino" text="Masculino">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></RadioButton>
-            <PasswordField fx:id="senhaCadastro" layoutX="300.0" layoutY="403.0">
+            <PasswordField fx:id="senhaCadastro" layoutX="90.0" layoutY="397.0" promptText="Digite a sua senha">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></PasswordField>
-            <Label layoutX="73.0" layoutY="206.0" text="CPF" />
-            <Label layoutX="73.0" layoutY="382.0" text="Email" />
-            <Label contentDisplay="TOP" layoutX="73.0" layoutY="447.0" text="Confirmar senha" />
-            <Label layoutX="16.0" layoutY="28.0" prefHeight="32.0" prefWidth="312.0" text="Preencha as informações abaixo">
+            <Label layoutX="305.0" layoutY="149.0" text="CPF" />
+            <Label layoutX="90.0" layoutY="290.0" text="Email" />
+            <Label contentDisplay="TOP" layoutX="313.0" layoutY="376.0" text="Confirmar senha" />
+            <Label layoutX="100.0" layoutY="34.0" prefHeight="32.0" prefWidth="409.0" text="Preencha as informações abaixo para realizar o cadastro">
                <font>
-                  <Font name="Yu Gothic UI Light" size="22.0" />
+                  <Font name="Yu Gothic UI Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="229.0" layoutY="60.0" text="para criar uma conta">
-               <font>
-                  <Font name="Yu Gothic UI Light" size="22.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nomeCadastro" layoutX="73.0" layoutY="136.0">
+            <TextField fx:id="nomeCadastro" layoutX="90.0" layoutY="163.0" promptText="Digite o seu nome">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <TextField fx:id="confirmaSenhaCadastro" layoutX="73.0" layoutY="464.0">
+            <PasswordField fx:id="confirmarSenhaCadastro" layoutX="313.0" layoutY="393.0" promptText="Confirme a sua senha" />
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagem/Logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="315.0" layoutY="290.0" text="Data de nascimento" />
+            <DatePicker fx:id="dataDeNascimento" layoutX="313.0" layoutY="311.0" />
+            <Label layoutX="312.0" layoutY="229.0" text="Sexo" />
+            <RadioButton fx:id="botaoMasculino" layoutX="313.0" layoutY="250.0" mnemonicParsing="false" onAction="#selecionarSexo" text="Masculino">
+               <toggleGroup>
+                  <ToggleGroup fx:id="sexo" />
+               </toggleGroup>
                <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton fx:id="botaoFeminino" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" onAction="#selecionarSexo" text="Feminino" toggleGroup="$sexo" />
          </children>
       </Pane>
+      <Pane layoutY="50.0" prefHeight="550.0" prefWidth="250.0" style="-fx-background-color: #6fc5dd;" />
+      <VBox prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000;" />
    </children>
 </AnchorPane>

@@ -1,20 +1,20 @@
 package org.example.cursojavafx.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
-import org.example.cursojavafx.service.AutenticacaoCadastroUsuario;
+import org.example.cursojavafx.service.UsuarioLogado;
 
 import java.io.IOException;
 
-public class PacienteController {
-
-    private AutenticacaoCadastroUsuario pacienteAutentica = new AutenticacaoCadastroUsuario();
+public class MenuPacienteController {
 
     @FXML private Label boasVindas;
     @FXML private Label nomePaciente;
@@ -37,10 +37,20 @@ public class PacienteController {
         boasVindas.setText(mensagem);
     }
 
-
     @FXML
-    private void verDados(){
+    private void verDados(ActionEvent event)throws IOException{
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaDadosPaciente.fxml"));
+        Parent root = loader.load();
+        DadosPacienteController controller = loader.getController();
 
+        controller.setNome(UsuarioLogado.getPacienteLogado().getNome());
+        controller.setSobrenome(UsuarioLogado.getPacienteLogado().getSobrenome());
+        controller.setEmail(UsuarioLogado.getPacienteLogado().getEmail());
+        controller.setSenha(UsuarioLogado.getPacienteLogado().getSenha());
+        //controller.setCpf(PacienteLogadoController.getPacienteLogado().getCpf();
+
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
     @FXML
@@ -69,20 +79,19 @@ public class PacienteController {
     }
 
     @FXML
-    private void marcarConsulta() {
-
+    private void marcarConsulta(ActionEvent event)throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMarcarConsulta.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
-    public void sair(javafx.event.ActionEvent event) throws IOException{
+    @FXML
+    private void sair(javafx.event.ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaInicial.fxml"));
-
-        Scene scene = new Scene(loader.load(),800,600);
-
+        Scene scene = new Scene(loader.load());
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         stage.setScene(scene);
-
-        pacienteAutentica.setPacienteLogado(null);
         System.out.println("Paciente deslogado!");
     }
 }

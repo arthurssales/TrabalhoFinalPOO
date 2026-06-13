@@ -1,0 +1,5 @@
+TelaLoginPaciente:
+    Adicionar o botão de cadastro do paciente;
+
+    LoginPacienteController:
+        Adicionar codigo relacionado ao botão de cadastro

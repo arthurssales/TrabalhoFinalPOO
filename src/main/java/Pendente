@@ -1,6 +1,18 @@
-1. Verificação do cpf com 11 digitos
-2. Desabilitar botão de confirmar cadastro caso algum campo não esteja preenchido
-3. Tratar exceções;
+
+*******************
+1. Tratar exceções;
+
+2. CadastroMedicoController:
+- Criar cadastro de medicos (Banco de dados)
+- interface do cadastro de medicos
 
 
-Modelar o projeto
+3.CadastroPacienteController:
+- Verificação do cpf com 11 digitos
+- Desabilitar botão de confirmar cadastro caso algum campo não esteja preenchido
+- Consertar cadastro de pacientes: o paciente que foi cadastrado não consegue entrar no login (Banco de dados)
+
+
+É necessário o crm e cpf para cadastro?
+A autenticação do cadastro deve ser feita fora do controller?
+******************
