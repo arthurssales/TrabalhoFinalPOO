@@ -38,7 +38,7 @@ public class LoginMedicoController {
         if(acessoPermitido){
             System.out.println("Acesso permitido");
 
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuMedico.fxml")); //criar tela de menu do medico
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("MenuMedico.fxml")); //criar tela de menu do medico
             Scene scene = new Scene(loader.load(),800,600);
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);

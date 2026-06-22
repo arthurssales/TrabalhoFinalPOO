@@ -16,7 +16,7 @@
 
         <VBox prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000;" />
 
-        <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="250.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="250.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../imagem/Logo.png" />
             </image>
@@ -88,7 +88,7 @@
             </graphic>
         </Button>
 
-        <Button fx:id="botaoConsultasRealizadas" layoutX="536.0" layoutY="172.0" mnemonicParsing="false" onAction="#verConsultasRealizadas" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CFF;">
+        <Button fx:id="botaoConsultasRealizadas" layoutX="536.0" layoutY="172.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CFF;">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -100,7 +100,6 @@
                 </ImageView>
             </graphic>
         </Button>
-      <Button fx:id="botaoRealizaConsulta" layoutX="380.0" layoutY="277.0" mnemonicParsing="false" onAction="#realizarConsulta" prefHeight="62.0" prefWidth="105.0" text="Realizar consulta" />
 
     </children>
 </AnchorPane>

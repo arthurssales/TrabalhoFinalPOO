@@ -51,15 +51,7 @@ public class DadosPacienteController {
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
-
-        Parent root = loader.load();
-        MenuPacienteController controller = loader.getController();
-        //controller.setNomePaciente(UsuarioLogado.getPacienteLogado().getNome());
-        controller.setBoasVindas("Seja bem vindo, " + UsuarioLogado.getPacienteLogado().getNome());
-
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        CarregarTelasController.carregarMenuPaciente(event);
     }
 
 

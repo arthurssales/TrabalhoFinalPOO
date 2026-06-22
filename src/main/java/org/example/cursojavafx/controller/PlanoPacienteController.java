@@ -7,13 +7,10 @@ import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
-import org.example.cursojavafx.model.PlanoA;
-import org.example.cursojavafx.model.PlanoB;
 import org.example.cursojavafx.service.UsuarioLogado;
 import java.io.IOException;
 
@@ -28,12 +25,15 @@ public class PlanoPacienteController {
 
     public void initialize() {
         botaoPlanoA.setOnAction(e -> aplicarEfeitos(botaoPlanoA));
-        botaoPlanoB.setOnAction(e -> aplicarEfeitos(botaoPlanoB));
         botaoSemPlano.setOnAction(e -> aplicarEfeitos(botaoSemPlano));
 
         botaoPlanoA.setOnAction(e -> selecionarPlano(botaoPlanoA));
-        botaoPlanoB.setOnAction(e -> selecionarPlano(botaoPlanoB));
         botaoSemPlano.setOnAction(e -> selecionarPlano(botaoSemPlano));
+
+
+
+        botaoPlanoB.setOnAction(e -> aplicarEfeitos(botaoPlanoB));
+        botaoPlanoB.setOnAction(e -> selecionarPlano(botaoPlanoB));
     }
 
     private Button botaoPlanoSelecionado;
@@ -43,7 +43,7 @@ public class PlanoPacienteController {
             tt.play();
         });
         botao.setOnMouseExited(e -> {TranslateTransition tt = new TranslateTransition(Duration.millis(150), botao);
-            tt.setToY(0); // volta à posição original
+            tt.setToY(0);
             tt.play();
         });
         botao.setOnAction(e -> {botao.setStyle("-fx-background-color: #4CAF50;" + "-fx-text-fill: white;");
@@ -65,11 +65,9 @@ public class PlanoPacienteController {
         if(botao == botaoPlanoA){
             planoSelecionado = "Plano A";
         }
-        else if(botao == botaoPlanoB){
-            planoSelecionado = "Plano B";
-        }
+
         else if(botao == botaoSemPlano){
-            planoSelecionado = "Sem plano";
+            planoSelecionado = "não tenho";
         }
     }
 
@@ -79,28 +77,16 @@ public class PlanoPacienteController {
         if(planoSelecionado != null){
             switch (planoSelecionado){
                 case "Plano A":
-                    PlanoA planoA = new PlanoA();
-                    UsuarioLogado.getPacienteLogado().setPlanoA(planoA);
+                    UsuarioLogado.getPacienteLogado().setPlanoSaude("Plano A");
                     UsuarioLogado.getPacienteLogado().setPrimeiroAcesso(false);
                     break;
 
-                case "Plano B":
-                    PlanoB planoB = new PlanoB();
-                    UsuarioLogado.getPacienteLogado().setPlanoB(planoB);
-                    UsuarioLogado.getPacienteLogado().setPrimeiroAcesso(false);
-                    break;
-
-                case "Sem plano":
+                case "não tenho":
+                    UsuarioLogado.getPacienteLogado().setPlanoSaude("não tenho");
                     UsuarioLogado.getPacienteLogado().setPrimeiroAcesso(false);
             }
 
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
-            Parent root = loader.load();
-            MenuPacienteController controller = loader.getController();
-            controller.setNomePaciente(UsuarioLogado.getPacienteLogado().getNome());
-
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            CarregarTelasController.carregarMenuPaciente(event);
         }
         else{
             Alert alerta = new Alert(Alert.AlertType.ERROR);

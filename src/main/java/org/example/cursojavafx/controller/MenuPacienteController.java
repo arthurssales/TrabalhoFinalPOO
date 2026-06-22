@@ -59,8 +59,11 @@ public class MenuPacienteController {
     }
 
     @FXML
-    private void mostrarCustos(){
-
+    private void mostrarCustos(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaFinanceiroPaciente.fxml"));
+        Scene scene = new Scene(loader.load(), 800, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML

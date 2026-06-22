@@ -56,20 +56,7 @@ public class LoginPacienteController {
                 stage.setScene(scene);
             }
             else {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
-                Parent root = loader.load();
-                MenuPacienteController controller = loader.getController();
-
-                if (UsuarioLogado.getPacienteLogado().getSexo().equals("Masculino"))
-                    controller.setBoasVindas("Seja bem vindo, " + UsuarioLogado.getPacienteLogado().getNome());
-
-                else
-                    controller.setBoasVindas("Seja bem vinda, " + UsuarioLogado.getPacienteLogado().getNome());
-
-                //controller.setNomePaciente(UsuarioLogado.getPacienteLogado().getNome());
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
+                CarregarTelasController.carregarMenuPaciente(event);
             }
         }
 

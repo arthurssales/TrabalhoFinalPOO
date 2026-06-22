@@ -1,5 +1,8 @@
 package org.example.cursojavafx.controller;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +11,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Cardiologista;
@@ -24,53 +30,49 @@ import java.util.ResourceBundle;
 
 public class MarcarConsultaController implements Initializable {
 
-    @FXML private ListView<String> cardiologistaListView;
-    @FXML private ListView<String> dermatologistaListView;
-    @FXML private ListView<String> pediatraListView;
+    @FXML private TableView<Medico> tabelaMedicos;
 
-    @FXML private ArrayList<String> listaCardiologista = new ArrayList<>();
-    @FXML private ArrayList<String> listaDermatologista = new ArrayList<>();
-    @FXML private ArrayList<String> listaPediatra = new ArrayList<>();
+    @FXML private TableColumn<Medico, String> colunaNome;
+    @FXML private TableColumn<Medico, String> colunaEspecialidade;
+    @FXML private TableColumn<Medico, Double> colunaMedia;
+    @FXML private TableColumn<Medico, Integer> colunaAvaliacoesRecentes;
 
+    private final ObservableList<Medico> medicos = FXCollections.observableArrayList();
+    private Medico medicoSelecionado;
 
-    /*VAI CLICAR EM UMA LISTVIEW*/
     @FXML
-    private void confirmar(ActionEvent event){
-        String medicoSelecionado = cardiologistaListView.getSelectionModel().getSelectedItem();
-        System.out.println("Médico selecionado:  " + medicoSelecionado);
+    private void confirmar(ActionEvent event) throws IOException{
+        if(medicoSelecionado != null){
+            ConfirmarConsultaController.setMedicoSelecionado(medicoSelecionado);
+
+            System.out.println(medicoSelecionado.getNome());
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("ConfirmarConsulta.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        }
     }
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
-
-        Parent root = loader.load();
-        MenuPacienteController controller = loader.getController();
-        controller.setNomePaciente(UsuarioLogado.getPacienteLogado().getNome());
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        CarregarTelasController.carregarMenuPaciente(event);
     }
-
-    private void pegarNomesMedicos(){
-        for(Medico medico : CadastroUsuarioService.getMedicosCadastrados()){
-            if(medico instanceof Cardiologista)
-                listaCardiologista.add(medico.getNome());
-
-            else if (medico instanceof Dermatologista)
-                listaDermatologista.add(medico.getNome());
-
-            else if (medico instanceof Pediatra)
-                listaPediatra.add(medico.getNome());
-
-        }
-    }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pegarNomesMedicos();
-        cardiologistaListView.getItems().addAll(listaCardiologista);
-        dermatologistaListView.getItems().addAll(listaDermatologista);
-        pediatraListView.getItems().addAll(listaPediatra);
+
+        tabelaMedicos.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {medicoSelecionado = novo;});
+
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaEspecialidade.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClass().getSimpleName()));
+        //colunaMedia.setCellValueFactory(new PropertyValueFactory<>("media"));
+        /*colunaAvaliacoesRecentes.setCellValueFactory(new PropertyValueFactory<>("avaliacoesRecentes"));
+        */
+        tabelaMedicos.setItems(medicos);
+
+        medicos.addAll(CadastroUsuarioService.getMedicosCadastrados());
+
     }
+
+
 }

@@ -1,17 +1,24 @@
 package org.example.cursojavafx.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Paciente extends UsuarioCadastrado {
     private int cpf;
     private boolean primeiroAcesso = true;
     private double custoTotal;
+    private List<Consulta> historicoConsultas = new ArrayList<>();
+    private String planoSaude;
+
+    public void adicionarConsulta(Consulta consulta){
+        historicoConsultas.add(consulta);
+    }
 
     public Paciente(String nome, String sobrenome, String email, String senha, String sexo,int idade) {
         super(nome,sobrenome, email, senha, sexo,idade);
         //this.cpf = cpf;
         custoTotal = 0;
     }
-    PlanoA planoA;
-    PlanoB planoB;
 
     public boolean marcarConsulta(Medico medicoSelecionado){
         return medicoSelecionado.getQntConsultas() != medicoSelecionado.getQntMaxConsulta();
@@ -29,10 +36,6 @@ public class Paciente extends UsuarioCadastrado {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
-    }
-
     public void setCustoTotal(double custoConsulta){
         custoTotal += custoConsulta;
     }
@@ -41,11 +44,11 @@ public class Paciente extends UsuarioCadastrado {
         return custoTotal;
     }
 
-    public void setPlanoB(PlanoB plano){
-        planoB = plano;
+    public String getPlanoSaude(){
+        return planoSaude;
     }
 
-    public void setPlanoA(PlanoA plano){
-        planoA = plano;
+    public void setPlanoSaude(String planoSaude){
+        this.planoSaude = planoSaude;
     }
 }
