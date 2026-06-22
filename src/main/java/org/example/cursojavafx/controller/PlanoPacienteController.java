@@ -3,6 +3,7 @@ package org.example.cursojavafx.controller;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.service.UsuarioLogado;
 import java.io.IOException;
+import java.util.Optional;
 
 public class PlanoPacienteController {
     private String planoSelecionado = null;
@@ -20,7 +22,6 @@ public class PlanoPacienteController {
     @FXML Button botaoConfirma;
     @FXML Button botaoVolta;
     @FXML Button botaoPlanoA;
-    @FXML Button botaoPlanoB;
     @FXML Button botaoSemPlano;
 
     public void initialize() {
@@ -30,10 +31,6 @@ public class PlanoPacienteController {
         botaoPlanoA.setOnAction(e -> selecionarPlano(botaoPlanoA));
         botaoSemPlano.setOnAction(e -> selecionarPlano(botaoSemPlano));
 
-
-
-        botaoPlanoB.setOnAction(e -> aplicarEfeitos(botaoPlanoB));
-        botaoPlanoB.setOnAction(e -> selecionarPlano(botaoPlanoB));
     }
 
     private Button botaoPlanoSelecionado;
@@ -51,12 +48,27 @@ public class PlanoPacienteController {
     }
 
     private void selecionarPlano(Button botao) {
-        if (botaoPlanoSelecionado != null)
+
+        if(botao == botaoSemPlano){
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Confirmação");
+            alerta.setHeaderText("Tem certeza?");
+            alerta.setContentText("Você pagará o valor integral nas suas consultas e \nnão terá acesso ao dermatologista");
+
+            Optional<ButtonType> resultado = alerta.showAndWait();
+
+            if(resultado.isEmpty() || resultado.get() != ButtonType.OK){
+                return;
+            }
+        }
+
+        if (botaoPlanoSelecionado != null) {
             botaoPlanoSelecionado.setStyle("-fx-background-color: #6EC1E4;");
+        }
 
         botaoPlanoSelecionado = botao;
 
-        botao.setStyle("-fx-background-color: #4CAF50;" + "-fx-text-fill: white;");
+        botao.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
 
         escolherPlano(botao);
     }

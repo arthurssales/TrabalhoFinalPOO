@@ -18,11 +18,11 @@ public class CadastroUsuarioService {
 
     private static final Paciente paciente1 = new Paciente("Arthur","dos Santos","arthur@gmail.com","1234","Masculino",20);
     private static final Paciente paciente2 = new Paciente("Eduardo","Castelo Branco","dudu@gmail.com","1234","Masculino",20);
-    private static final Paciente paciente3 = new Paciente("Luiz","Miguel Castro","luiz@gmail.com","1234","Masculino",20);
+    private static final Paciente paciente3 = new Paciente("Luiz","Miguel Castro","luiz@gmail.com","1234","Masculino",18);
 
     private static final Cardiologista medico1 = new Cardiologista("Cardiologista1","Lucas","duduM@gmail.com","1234","Masculino",20);
     private static final Dermatologista medico2 = new Dermatologista("Dermatologista1","Sales","arthurM@gmail.com","1234","Masculino",20);
-    private static final Pediatra medico3 = new Pediatra("Pediatra1","luiz@gmail.com","1234","1234","Masculino",20);
+    private static final Pediatra medico3 = new Pediatra("Pediatra1","Luiz","luiz@gmail.com","1234","Masculino",18);
     private static int i = 0;
 
     public static void cadastroInicial(){

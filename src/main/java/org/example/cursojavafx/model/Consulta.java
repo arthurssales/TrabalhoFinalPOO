@@ -14,6 +14,7 @@ public class Consulta {
         this.paciente = paciente;
         this.medico = medico;
         this.data = data;
+        paciente.adicionarConsulta(this);
     }
     private String sintomas;
     private String diagnostico;
