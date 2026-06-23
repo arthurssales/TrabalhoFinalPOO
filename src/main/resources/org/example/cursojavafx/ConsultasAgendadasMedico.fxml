@@ -22,7 +22,6 @@
             <TableColumn fx:id="colunaData" prefWidth="129.5999755859375" text="Data" />
         </columns>
       </TableView>
-      <Button fx:id="botaoVolta" layoutX="152.0" layoutY="493.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
-      <Button fx:id="botaoHistorico" layoutX="444.0" layoutY="493.0" mnemonicParsing="false" onAction="#verHistorico" text="Ver histórico" />
+      <Button fx:id="botaoVolta" layoutX="61.0" layoutY="511.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

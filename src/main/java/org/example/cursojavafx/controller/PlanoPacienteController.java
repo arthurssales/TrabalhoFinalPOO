@@ -30,7 +30,6 @@ public class PlanoPacienteController {
 
         botaoPlanoA.setOnAction(e -> selecionarPlano(botaoPlanoA));
         botaoSemPlano.setOnAction(e -> selecionarPlano(botaoSemPlano));
-
     }
 
     private Button botaoPlanoSelecionado;

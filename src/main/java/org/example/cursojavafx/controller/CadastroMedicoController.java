@@ -23,7 +23,10 @@ public class CadastroMedicoController implements Comandos {
 
     @FXML private MenuItem botaoCardiologista;
     @FXML private MenuItem botaoPediatra;
-    @FXML private MenuItem botaoPneumologista;
+    @FXML private MenuItem botaoDermatologista;
+
+    @FXML private MenuItem botaoPlanoA;
+    @FXML private MenuItem botaoSemPlano;
 
     @FXML private Button botaoConfirma;
     @FXML private Button botaoVolta;
@@ -50,20 +53,30 @@ public class CadastroMedicoController implements Comandos {
         else
             sexoCadastro = null;
     }
-
+    private String planoMedico;
 
     @FXML
-    public void selecionarCardiologista(){
+    private void selecionarPlanoA(){
+        planoMedico = "Plano A";
+    }
+
+    @FXML
+    private void selecionarSemPlano(){
+        planoMedico = "Sem plano";
+    }
+
+    @FXML
+    private void selecionarCardiologista(){
         especialidade = "Cardiologista";
     }
 
     @FXML
-    public void selecionarDermatologista(){
+    private void selecionarDermatologista(){
         especialidade = "Dermatologista";
     }
 
     @FXML
-    public void selecionarPediatra(){
+    private void selecionarPediatra(){
         especialidade = "Pediatra";
     }
 
@@ -91,48 +104,37 @@ public class CadastroMedicoController implements Comandos {
         }
 
         else{
-            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setContentText("Usuário cadastrado!");
             alerta.showAndWait();
 
             switch (especialidade) {
                 case "Pneumologista": {
-                    Medico medicoCadastrado = new Dermatologista(nomeCadastro.getText(), sobrenomeCadastro.getText(), emailCadastro.getText(), senhaCadastro.getText(), sexoCadastro, 20);
+                    Medico medicoCadastrado = new Dermatologista(nomeCadastro.getText(), sobrenomeCadastro.getText(), emailCadastro.getText(), senhaCadastro.getText(), sexoCadastro, 20,planoMedico);
                     CadastroUsuarioService.cadastrar(medicoCadastrado);
-                    System.out.println("Nome: " + medicoCadastrado.getNome());
-                    System.out.println("email: " + medicoCadastrado.getEmail());
-                    System.out.println("senha: " + medicoCadastrado.getSenha());
-                    System.out.println("sexo: " + medicoCadastrado.getSexo());
-
                     break;
                 }
                 case "Pediatra": {
-                    Medico medicoCadastrado = new Pediatra(nomeCadastro.getText(), sobrenomeCadastro.getText(), emailCadastro.getText(), senhaCadastro.getText(), sexoCadastro, 20);
+                    Medico medicoCadastrado = new Pediatra(nomeCadastro.getText(), sobrenomeCadastro.getText(), emailCadastro.getText(), senhaCadastro.getText(), sexoCadastro, 20,planoMedico);
                     CadastroUsuarioService.cadastrar(medicoCadastrado);
-                    System.out.println("Nome: " + medicoCadastrado.getNome());
-                    System.out.println("email: " + medicoCadastrado.getEmail());
-                    System.out.println("senha: " + medicoCadastrado.getSenha());
-                    System.out.println("sexo: " + medicoCadastrado.getSexo());
                     break;
                 }
                 case "Cardiologista": {
-                    Medico medicoCadastrado = new Cardiologista(nomeCadastro.getText(), sobrenomeCadastro.getText(), emailCadastro.getText(), senhaCadastro.getText(), sexoCadastro, 20);
+                    Medico medicoCadastrado = new Cardiologista(nomeCadastro.getText(), sobrenomeCadastro.getText(), emailCadastro.getText(), senhaCadastro.getText(), sexoCadastro, 20,planoMedico);
                     CadastroUsuarioService.cadastrar(medicoCadastrado);
-                    System.out.println("Nome: " + medicoCadastrado.getNome());
-                    System.out.println("email: " + medicoCadastrado.getEmail());
-                    System.out.println("senha: " + medicoCadastrado.getSenha());
-                    System.out.println("sexo: " + medicoCadastrado.getSexo());
                     break;
                 }
             }
             nomeCadastro.setText(null);
             sobrenomeCadastro.setText(null);
             emailCadastro.setText(null);
+            planoMedico = null;
             senhaCadastro.setText(null);
             confirmarSenhaCadastro.setText(null);
             especialidade = null;
+            /*botaoMasculino.fire();
+            botaoFeminino.fire();*/
             sexo = null;
-            crmCadastro.setText(null);
         }
     }
 
@@ -162,6 +164,6 @@ public class CadastroMedicoController implements Comandos {
                 confirmarSenha == null ||
                 sexo == null ||
                 especialidade == null ||
-                crmCadastro == null;
+                planoMedico == null;
     }
 }

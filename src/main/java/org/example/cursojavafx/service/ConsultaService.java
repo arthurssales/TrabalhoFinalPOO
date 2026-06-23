@@ -31,6 +31,22 @@ public class ConsultaService {
         return consulta;
     }
 
+    public static void cancelarConsulta(Consulta consulta){
+        consulta.getMedico().getConsultasAgendadas().removeIf(c -> c == consulta);
+        consulta.getPaciente().getConsultasAgendadas().removeIf(c -> c == consulta);
+
+        System.out.println("Médico: " +
+                consulta.getMedico().getConsultasAgendadas().size());
+
+        System.out.println("Paciente: " +
+                consulta.getPaciente().getConsultasAgendadas().size());
+
+        //buscarProximaConsulta(consulta.getMedico());
+    }
+
+    /*public static void notificarProximo(Consulta consulta){
+        consulta.getMedico().getConsultasAgendadas().get(1);
+    }*/
 
     public static Conta realizarConsulta(Consulta consulta, String sintomas, String diagnostico, String tratamento,
                                          String medicamentos, String exames, String observacoes){
@@ -64,12 +80,7 @@ public class ConsultaService {
 
         LocalDate hoje = LocalDate.now();
 
-        return medico.getConsultasAgendadas()
-                .stream()
-                .filter(c -> !c.getData().isBefore(hoje))
-                .sorted(Comparator.comparing(Consulta::getData))
-                .findFirst()
-                .orElse(null);
+        return medico.getConsultasAgendadas().stream().filter(c -> !c.getData().isBefore(hoje)).sorted(Comparator.comparing(Consulta::getData)).findFirst().orElse(null);
     }
 
     public static void setIdadeValida(boolean idadeValida) {

@@ -76,15 +76,15 @@ public class FinanceiroPacienteController {
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
         Scene scene = new Scene(loader.load(), 800, 600);
-
         MenuPacienteController controller = loader.getController();
         if (paciente != null) {
             controller.setNomePaciente(paciente.getNome());
         }
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
+        stage.setScene(scene);*/
+
+        CarregarTelasController.carregarMenuPaciente(event);
     }
 }

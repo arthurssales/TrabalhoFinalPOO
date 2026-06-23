@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 public class Pediatra extends Medico {
 
-    public Pediatra(String nome,String sobrenome,String email,String senha,String sexo,int idade){
-        super(nome,sobrenome,email,senha,sexo,idade);
+    public Pediatra(String nome,String sobrenome,String email,String senha,String sexo,int idade,String plano){
+        super(nome,sobrenome,email,senha,sexo,idade, plano);
         this.qntMaxConsulta = 2;
         this.valorConsulta = 200;
     }

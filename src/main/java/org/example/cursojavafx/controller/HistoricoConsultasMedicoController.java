@@ -23,7 +23,7 @@ import org.example.cursojavafx.service.UsuarioLogado;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class HistoricoConsultasPacienteController {
+public class HistoricoConsultasMedicoController {
 
     @FXML private TableView<Consulta> tabelaConsultas;
 
@@ -31,7 +31,7 @@ public class HistoricoConsultasPacienteController {
     @FXML private Button botaoConfirma;
 
     @FXML private TableColumn<Consulta,String> colunaNome;
-    @FXML private TableColumn<Consulta, String> colunaEspecialidade;
+    @FXML private TableColumn<Consulta, String> colunaPlano;
     @FXML private TableColumn<Consulta,LocalDate> colunaData;
 
     private final ObservableList<Consulta> consultas = FXCollections.observableArrayList();
@@ -40,20 +40,20 @@ public class HistoricoConsultasPacienteController {
     public void initialize(){
         tabelaConsultas.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {consultaSelecionada = novo;});
 
-        colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMedico().getNome()));
-        colunaEspecialidade.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMedico().getClass().getSimpleName()));
+        colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPaciente().getNome() + " " + cellData.getValue().getPaciente().getSobrenome()));
+        colunaPlano.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPaciente().getPlanoSaude()));
         colunaData.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getData()));
         tabelaConsultas.setItems(consultas);
 
-        Paciente paciente = UsuarioLogado.getPacienteLogado();
-        consultas.addAll(paciente.getHistoricoConsultas());
+        Medico medico = UsuarioLogado.getMedicoLogado();
+        consultas.addAll(medico.getConsultasRealizadas());
     }
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
         Medico medico = UsuarioLogado.getMedicoLogado();
-        if(UsuarioLogado.getPacienteLogado() != null){
-            CarregarTelasController.carregarMenuPaciente(event);
+        if(UsuarioLogado.getMedicoLogado() != null){
+            CarregarTelasController.carregarMenuMedico(event);
         }
 
         else
@@ -68,16 +68,16 @@ public class HistoricoConsultasPacienteController {
             Parent root = loader.load();
             ProntuarioController controller = loader.getController();
             controller.setInformacoes(consultaSelecionada.getSintomas(),
-            consultaSelecionada.getDiagnostico(),
-            consultaSelecionada.getTratamento(),
-            consultaSelecionada.getObservacoes(),
-            consultaSelecionada.getReceita(),
-            consultaSelecionada.getExamesSolicitados(),
+                    consultaSelecionada.getDiagnostico(),
+                    consultaSelecionada.getTratamento(),
+                    consultaSelecionada.getObservacoes(),
+                    consultaSelecionada.getReceita(),
+                    consultaSelecionada.getExamesSolicitados(),
 
-            consultaSelecionada.getMedico().getNome(),
-            consultaSelecionada.getMedico().getClass().getSimpleName(),
-            consultaSelecionada.getPaciente().getNome(),
-            (String.valueOf(consultaSelecionada.getData())));
+                    consultaSelecionada.getMedico().getNome(),
+                    consultaSelecionada.getMedico().getClass().getSimpleName(),
+                    consultaSelecionada.getPaciente().getNome(),
+                    (String.valueOf(consultaSelecionada.getData())));
 
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

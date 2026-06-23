@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.HistoricoConsultasMedicoController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Consultas atendidas">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="145.0" text="Ver registros da consulta">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabelaConsultas" layoutY="217.0" prefHeight="200.0" prefWidth="800.0">
+         <columns>
+            <TableColumn fx:id="colunaNome" prefWidth="288.0000305175781" text="Paciente" />
+            <TableColumn fx:id="colunaPlano" prefWidth="173.5999755859375" text="Plano" />
+            <TableColumn fx:id="colunaData" minWidth="0.79998779296875" prefWidth="296.800048828125" text="Data" />
+         </columns>
+      </TableView>
+      <Button fx:id="botaoVolta" layoutX="136.0" layoutY="503.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="botaoConfirma" layoutX="501.0" layoutY="503.0" mnemonicParsing="false" onAction="#confirmar" text="Ver registro" />
+   </children>
+</AnchorPane>

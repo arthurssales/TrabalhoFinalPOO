@@ -3,58 +3,58 @@ package org.example.cursojavafx.service;
 import org.example.cursojavafx.model.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class CadastroUsuarioService {
     private static final ArrayList<UsuarioCadastrado> usuariosCadastrados = new ArrayList<>();
-    private Paciente pacienteLogado = null;
-    private Medico medicoLogado = null;
 
+    private static final ArrayList<Medico> medicosPlano = new ArrayList<>();
     private static final ArrayList<Medico> medicosCadastrados = new ArrayList<>();
-    private static ArrayList<Paciente> pacientesCadastrados = new ArrayList<>();
-
-    private static final ArrayList<Cardiologista> cardiologistasCadastrados = new ArrayList<>();
-    private static final ArrayList<Dermatologista> dermatologistasCadastrados = new ArrayList<>();
-    private static final ArrayList<Pediatra> pediatrasCadastrados = new ArrayList<>();
+    private static final ArrayList<Paciente> pacientesCadastrados = new ArrayList<>();
 
     private static final Paciente paciente1 = new Paciente("Arthur","dos Santos","a","1234","Masculino",20);
-    private static final Paciente paciente2 = new Paciente("Eduardo","Castelo Branco","d","1234","Masculino",20);
+    private static final Paciente paciente2 = new Paciente("Eduardo","Castelo Branco","d","1234","Masculino",18);
     private static final Paciente paciente3 = new Paciente("Luiz","Miguel Castro","l","1234","Masculino",17);
 
-    private static final Cardiologista medico1 = new Cardiologista("Cardiologista1","Lucas","cM","1234","Masculino",20);
-    private static final Dermatologista medico2 = new Dermatologista("Dermatologista1","Sales","dM","1234","Masculino",20);
-    private static final Pediatra medico3 = new Pediatra("Pediatra1","Miguel","pM","1234","Masculino",20);
+    private static final Cardiologista cardiologista1 = new Cardiologista("Cardiologista1","Lucas","1","1","Masculino",20,"Plano A");
+    private static final Cardiologista cardiologista2 = new Cardiologista("Cardiologista2","Lucas","2","1","Masculino",20,"Plano A");
+    private static final Cardiologista cardiologista3 = new Cardiologista("Cardiologista3","Lucas","3","1","Masculino",20,"Sem plano");
+
+    private static final Dermatologista dermatologista1 = new Dermatologista("Dermatologista1","Sales","4","1234","Masculino",20,"Plano A");
+    private static final Dermatologista dermatologista2 = new Dermatologista("Dermatologista2","Sales","5","1234","Masculino",20,"Plano A");
+    private static final Dermatologista dermatologista3 = new Dermatologista("Dermatologista3","Sales","6","1234","Masculino",20,"Plano A");
+
+    private static final Pediatra pediatra1 = new Pediatra("Pediatra1","Miguel","7","1234","Masculino",20,"Plano A");
+    private static final Pediatra pediatra2 = new Pediatra("Pediatra2","Miguel","8","1234","Masculino",20,"Sem plano");
+    private static final Pediatra pediatra3 = new Pediatra("Pediatra3","Miguel","9","1234","Masculino",20,"Sem plano");
+
     private static int i = 0;
 
-    public static void cadastroInicial(){
+    public static void cadastroInicial() {
         i++;
-        if (i == 1){
+        if (i == 1) {
             pacientesCadastrados.add(paciente1);
             pacientesCadastrados.add(paciente2);
             pacientesCadastrados.add(paciente3);
 
-            cardiologistasCadastrados.add(medico1);
-            dermatologistasCadastrados.add(medico2);
-            pediatrasCadastrados.add(medico3);
+            medicosCadastrados.add(cardiologista1);
+            medicosCadastrados.add(cardiologista2);
+            medicosCadastrados.add(cardiologista3);
 
-            medicosCadastrados.add(medico1);
-            medicosCadastrados.add(medico2);
-            medicosCadastrados.add(medico3);
+            medicosCadastrados.add(dermatologista1);
+            medicosCadastrados.add(dermatologista2);
+            medicosCadastrados.add(dermatologista3);
 
-            usuariosCadastrados.add(paciente1);
-            usuariosCadastrados.add(paciente2);
-            usuariosCadastrados.add(paciente3);
-            usuariosCadastrados.add(medico1);
-            usuariosCadastrados.add(medico2);
-            usuariosCadastrados.add(medico3);
+            medicosCadastrados.add(pediatra1);
+            medicosCadastrados.add(pediatra2);
+            medicosCadastrados.add(pediatra3);
+
+            usuariosCadastrados.addAll(pacientesCadastrados);
+            usuariosCadastrados.addAll(medicosCadastrados);
+
+            medicosPlano.addAll(medicosCadastrados.stream().filter(m -> "Plano A".equals(m.getPlano())).toList());
         }
-    }
-
-    public void setPacienteLogado(Paciente pacienteLogado) {
-        this.pacienteLogado = pacienteLogado;
-    }
-
-    public Paciente getPacienteLogado(){
-        return pacienteLogado;
     }
 
     public static boolean compararSenhas(String senha1, String senha2){
@@ -79,77 +79,26 @@ public class CadastroUsuarioService {
             pacientesCadastrados.add((Paciente) usuarioCadastrado);
         }
 
-        else if(usuarioCadastrado instanceof Cardiologista){
+        else{
             medicosCadastrados.add((Medico) usuarioCadastrado);
-            cardiologistasCadastrados.add((Cardiologista) usuarioCadastrado);
+            adicionarMedicoPlano((Medico) usuarioCadastrado);
         }
+    }
 
-        else if(usuarioCadastrado instanceof Dermatologista){
-            medicosCadastrados.add((Medico) usuarioCadastrado);
-            dermatologistasCadastrados.add((Dermatologista) usuarioCadastrado);
-        }
+    public static void adicionarMedicoPlano(Medico medico){
+        if(medico.getPlano().equals("Plano A"))
+            medicosPlano.add(medico);
+    }
 
-        else if (usuarioCadastrado instanceof Pediatra){
-            medicosCadastrados.add((Medico) usuarioCadastrado);
-            pediatrasCadastrados.add((Pediatra) usuarioCadastrado);
-        }
-
-        System.out.println("\nCADASTRO DOS USUARIOS");
-        for (UsuarioCadastrado usuario : usuariosCadastrados){
-            System.out.printf("Nome completo: %s %s - email: %s - senha: %s - sexo: %s\n",
-                    usuario.getNome(),
-                    usuario.getSobrenome(),
-                    usuario.getEmail(),
-                    usuario.getSenha(),
-                    usuario.getSexo());
-        }
-
-        System.out.println("\nCADASTRO DOS PACIENTES");
-        for(Paciente paciente : pacientesCadastrados){
-            System.out.printf("Nome completo: %s %s - email: %s - senha: %s - sexo: %s\n",
-                    paciente.getNome(),
-                    paciente.getSobrenome(),
-                    paciente.getEmail(),
-                    paciente.getSenha(),
-                    paciente.getSexo());
-        }
-
-        System.out.println("\nCADASTRO DOS MÉDICOS");
-        for(Medico medico : medicosCadastrados){
-            System.out.printf("Nome completo: %s %s - email: %s - senha: %s - sexo: %s\n",
-                    medico.getNome(),
-                    medico.getSobrenome(),
-                    medico.getEmail(),
-                    medico.getSenha(),
-                    medico.getSexo());
-        }
+    public static ArrayList<Medico> getMedicosPlano(){
+        return medicosPlano;
     }
 
     public static ArrayList<Paciente> getPacientesCadastrados() {
         return pacientesCadastrados;
     }
 
-    public static ArrayList<Cardiologista> getCardiologistasCadastrados(){
-        return  cardiologistasCadastrados;
-    }
-
-    public static ArrayList<Pediatra> getPediatrasCadastrados(){
-        return pediatrasCadastrados;
-    }
-
-    public static ArrayList<Dermatologista> getDermatologistasCadastrados(){
-        return dermatologistasCadastrados;
-    }
-
     public static ArrayList<Medico> getMedicosCadastrados() {
         return medicosCadastrados;
-    }
-
-    public void setMedicoLogado(Medico medicoLogado){
-        this.medicoLogado = medicoLogado;
-    }
-
-    public Medico getMedicoLogado(){
-        return medicoLogado;
     }
 }

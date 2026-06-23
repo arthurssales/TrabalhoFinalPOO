@@ -1,5 +1,6 @@
 package org.example.cursojavafx.model;
 
+import java.util.Objects;
 import org.example.cursojavafx.service.CadastroUsuarioService;
 
 import java.text.DateFormat;
@@ -17,8 +18,26 @@ public class Consulta {
         this.medico = medico;
         this.data = data;
         this.consultaRealizada = false;
-        paciente.adicionarConsulta(this);
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Consulta consulta = (Consulta) o;
+
+        return Objects.equals(paciente, consulta.paciente)
+                && Objects.equals(medico, consulta.medico)
+                && Objects.equals(data, consulta.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(paciente, medico, data);
+    }
+
     private String sintomas;
     private String diagnostico;
     private String tratamento;
@@ -27,8 +46,6 @@ public class Consulta {
     private double valorPago;
     private String observacoes;
     private boolean realizada = false;
-
-
 
     public boolean isRealizada() {
         return realizada;

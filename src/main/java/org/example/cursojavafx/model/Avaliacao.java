@@ -6,16 +6,12 @@ public class Avaliacao {
 
     public double calcularMedia(){
         double media = 0;
-
-
-
         return media;
     }
 
     public int getNota() {
         return nota;
     }
-
     public void setNota(int nota) {
         this.nota = nota;
     }

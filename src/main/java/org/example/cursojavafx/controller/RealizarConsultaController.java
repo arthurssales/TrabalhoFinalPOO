@@ -35,11 +35,13 @@ public class RealizarConsultaController {
 
     @FXML
     private void verHistorico()throws IOException{
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("HistoricoConsultasPaciente.fxml"));
 
 
     }
 
+    public void setNomePaciente(String nome){
+        this.nomePaciente.setText(nome);
+    }
 
 
     @FXML

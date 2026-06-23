@@ -11,9 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.MenuMedicoController">
-
     <children>
-
         <VBox prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000;" />
 
         <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="250.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
@@ -44,24 +42,18 @@
             </children>
         </Pane>
 
-        <!-- ===== Cards de ação na área central ===== -->
-
-        <!-- Consultas marcadas -->
         <Label layoutX="342.0" layoutY="190.0" text="Consultas marcadas">
             <font><Font name="Century Gothic" size="18.0" /></font>
         </Label>
 
-        <!-- Consultas realizadas -->
         <Label layoutX="596.0" layoutY="191.0" text="Consultas realizadas">
             <font><Font name="Century Gothic" size="18.0" /></font>
         </Label>
 
-        <!-- Contador de consultas realizadas -->
         <Label fx:id="labelQtdConsultas" layoutX="620.0" layoutY="226.0" prefHeight="39.0" prefWidth="115.0" style="-fx-text-fill: #555;" text="0 consultas">
             <font><Font name="Britannic Bold" size="17.0" /></font>
         </Label>
 
-        <!-- Avaliação média -->
         <Label layoutX="290.0" layoutY="398.0" prefHeight="60.0" prefWidth="219.0" text="Minha avaliação">
             <font><Font name="Century Gothic" size="18.0" /></font>
             <graphic>
@@ -71,11 +63,10 @@
             </graphic>
         </Label>
 
-        <!-- Label da avaliação média -->
         <Label fx:id="labelAvaliacaoMedia" layoutX="290.0" layoutY="478.0" style="-fx-text-fill: #555;" text="Média: --">
             <font><Font name="Century Gothic" size="14.0" /></font>
         </Label>
-        <Button fx:id="botaoConsultas" layoutX="275.0" layoutY="172.0" mnemonicParsing="false" onAction="#verConsultas" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CFF;">
+        <Button fx:id="botaoConsultas" layoutX="275.0" layoutY="172.0" mnemonicParsing="false" onAction="#verConsultasAgendadas" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CFF;">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -88,7 +79,7 @@
             </graphic>
         </Button>
 
-        <Button fx:id="botaoConsultasRealizadas" layoutX="536.0" layoutY="172.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CFF;">
+        <Button fx:id="botaoConsultasRealizadas" layoutX="536.0" layoutY="172.0" mnemonicParsing="false" onAction="#verHistorico" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CFF;">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -105,7 +96,10 @@
             <Font name="Century Gothic" size="18.0" />
          </font>
          <graphic>
-            <Button fx:id="botaoRealizaConsulta" mnemonicParsing="false" onAction="#realizarConsulta" prefHeight="60.0" prefWidth="60.0" />
+            <Button fx:id="botaoRealizaConsulta" mnemonicParsing="false" onAction="#realizarConsulta" prefHeight="50.0" prefWidth="50.0">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></Button>
          </graphic>
       </Label>
 

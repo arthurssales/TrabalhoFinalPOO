@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
+import org.example.cursojavafx.exception.ConsultaInvalidaException;
 import org.example.cursojavafx.service.UsuarioLogado;
 
 import java.io.IOException;
@@ -65,23 +66,25 @@ public class MenuPacienteController {
         stage.setScene(scene);
     }
 
-    /*em nenhum momento o trabalho pede isso*/
-    @FXML
-    private void verExames(){
-
-    }
-
     @FXML
     private void verHistorico(ActionEvent event)throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("HistoricoConsultasPaciente.fxml"));
-        Scene scene = new Scene(loader.load());
+        Scene scene = new Scene(loader.load(),800,600);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
     }
 
     @FXML
-    private void cancelarConsulta(){
+    private void cancelarConsulta(ActionEvent event)throws IOException, ConsultaInvalidaException {
+        if (UsuarioLogado.getPacienteLogado().getConsultasAgendadas().isEmpty()){
+            System.out.println("Consultas agendadas: " + UsuarioLogado.getPacienteLogado().getConsultasAgendadas().size());
+            throw new ConsultaInvalidaException("Nenhuma consulta agendada");
+        }
 
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("CancelarConsulta.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
@@ -94,6 +97,7 @@ public class MenuPacienteController {
 
     @FXML
     private void sair(javafx.event.ActionEvent event) throws IOException{
+        UsuarioLogado.setPacienteLogado(null);
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaInicial.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

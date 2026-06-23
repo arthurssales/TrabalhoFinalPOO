@@ -70,7 +70,11 @@ public class MarcarConsultaController implements Initializable {
         */
         tabelaMedicos.setItems(medicos);
 
-        medicos.addAll(CadastroUsuarioService.getMedicosCadastrados());
+        if(UsuarioLogado.getPacienteLogado().getPlanoSaude().equals("Plano A"))
+            medicos.addAll(CadastroUsuarioService.getMedicosPlano());
+
+        else
+            medicos.addAll(CadastroUsuarioService.getMedicosCadastrados());
 
     }
 

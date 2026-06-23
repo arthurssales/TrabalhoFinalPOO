@@ -16,9 +16,9 @@ public class Paciente extends UsuarioCadastrado {
     public void adicionarConsulta(Consulta consulta) {
         consultasAgendadas.add(consulta);
     }
+
     public Paciente(String nome, String sobrenome, String email, String senha, String sexo,int idade) {
         super(nome,sobrenome, email, senha, sexo,idade);
-        //this.cpf = cpf;
         custoTotal = 0;
     }
 

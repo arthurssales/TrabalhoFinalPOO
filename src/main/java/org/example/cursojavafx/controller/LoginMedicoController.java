@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
@@ -20,8 +21,9 @@ public class LoginMedicoController {
     @FXML private TextField email;
     @FXML private TextField senha;
 
-    @FXML Button botaoVoltar;
-    @FXML Button botaoConfirmar;
+    @FXML private Button botaoVoltar;
+    @FXML private Button botaoConfirmar;
+    @FXML private Hyperlink linkCadastro;
 
     @FXML
     public void confirmar(ActionEvent event) throws IOException{
@@ -37,11 +39,7 @@ public class LoginMedicoController {
 
         if(acessoPermitido){
             System.out.println("Acesso permitido");
-
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("MenuMedico.fxml")); //criar tela de menu do medico
-            Scene scene = new Scene(loader.load(),800,600);
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+            CarregarTelasController.carregarMenuMedico(event);
         }
         else {
             System.out.println("Acesso negado");

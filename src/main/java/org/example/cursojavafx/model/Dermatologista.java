@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 public class Dermatologista extends Medico {
 
-    public Dermatologista(String nome, String sobrenome, String email, String senha, String sexo, int idade){
-        super(nome,sobrenome,email,senha,sexo,idade);
+    public Dermatologista(String nome, String sobrenome, String email, String senha, String sexo, int idade,String plano){
+        super(nome,sobrenome,email,senha,sexo,idade,plano);
         this.valorConsulta = 200;
     }
 

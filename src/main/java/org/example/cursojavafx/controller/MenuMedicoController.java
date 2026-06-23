@@ -14,8 +14,9 @@ import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.service.UsuarioLogado;
 
 import java.io.IOException;
+import java.nio.file.attribute.UserDefinedFileAttributeView;
 
-    public class MenuMedicoController {
+public class MenuMedicoController {
 
         @FXML private Label nomeMedico;
         @FXML private Label labelQtdConsultas;
@@ -49,28 +50,30 @@ import java.io.IOException;
         }
 
         @FXML
-        private void verConsultasRealizadas(){
+        private void verHistorico(ActionEvent event)throws IOException, ConsultaInvalidaException{
+            Medico medico = UsuarioLogado.getMedicoLogado();
 
+            if(medico.getConsultasRealizadas().isEmpty())
+                throw new ConsultaInvalidaException("Nnehum paciente foi atendido.");
+
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("HistoricoConsultasMedico.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
         }
 
         @FXML
         private void realizarConsulta(ActionEvent event)throws IOException, ConsultaInvalidaException{
             Medico medico = UsuarioLogado.getMedicoLogado();
-            if(medico.getConsultasAgendadas().isEmpty()){
-                throw new ConsultaInvalidaException("Nenhuma consulta agendada");
-            }
 
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("RealizarConsulta.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+            if(medico.getConsultasAgendadas().isEmpty())
+                throw new ConsultaInvalidaException("Nenhuma consulta agendada");
+
+            CarregarTelasController.carregarRealizarConsulta(event);
         }
 
-        // Abre a tela de consultas marcadas para o médico
-        // Ao clicar em uma consulta, o médico poderá ver exames, histórico, etc. do paciente
-
         @FXML
-        private void verConsultas(ActionEvent event) throws IOException, ConsultaInvalidaException {
+        private void verConsultasAgendadas(ActionEvent event) throws IOException, ConsultaInvalidaException {
             Medico medico = UsuarioLogado.getMedicoLogado();
 
             if(medico.getConsultasAgendadas().isEmpty()){
@@ -81,15 +84,17 @@ import java.io.IOException;
             Scene scene = new Scene(loader.load(), 800, 600);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            System.out.println("Ver consultas marcadas");
+            System.out.println("Ver consultas agendadas");
         }
 
         @FXML
         private void sair(ActionEvent event) throws IOException {
+            UsuarioLogado.setMedicoLogado(null);
+            System.out.println("Médico deslogado!");
+
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaInicial.fxml"));
             Scene scene = new Scene(loader.load(), 800, 600);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            System.out.println("Médico deslogado!");
         }
     }

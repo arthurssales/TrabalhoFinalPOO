@@ -12,15 +12,18 @@ public abstract class Medico extends UsuarioCadastrado {
     protected double valorConsulta;
     protected int qntMaxConsulta;
     protected int qntConsultas;
-    private List<Consulta> consultasAgendadas = new ArrayList<>();
+    private final List<Consulta> consultasAgendadas = new ArrayList<>();
     private List<Consulta> consultasRealizadas = new ArrayList<>();
     private Consulta consultasDia[] = new Consulta[3];
     protected Queue<Paciente> filaPacientes = new LinkedList<>();
+    protected String plano;
+    protected ArrayList<Avaliacao> avaliacoes;
 
-    public Medico(String nome, String sobrenome, String email, String senha, String sexo, int idade){
+    public Medico(String nome, String sobrenome, String email, String senha, String sexo, int idade,String plano){
         super(nome,sobrenome,email,senha,sexo,idade);
         this.qntConsultas = 0;
         this.qntMaxConsulta = 3;
+        this.plano = plano;
     }
 
     public void adicionarConsulta(Consulta consulta){
@@ -34,7 +37,6 @@ public abstract class Medico extends UsuarioCadastrado {
     public Paciente proximoPaciente(){
         return filaPacientes.poll();
     }
-
 
     public boolean podeAtender(Paciente paciente, LocalDate data){
         long consultasNoDia = consultasAgendadas.stream().filter(c -> c.getData().equals(data)).count();
@@ -93,13 +95,7 @@ public abstract class Medico extends UsuarioCadastrado {
         this.qntConsultas = qntConsultas;
     }
 
-    /*public ArrayList<Integer> getAvaliacao() {
-        return avaliacoes;
-    }
 
-    public void setAvaliacao(ArrayList<Integer> avaliacoes) {
-        this.avaliacoes = avaliacoes;
-    }*/
     /*protected ArrayList<Integer> avaliacoes;
     protected ArrayList<Avaliacao> avaliacoes2 = new ArrayList<>();
     */
@@ -149,4 +145,11 @@ public abstract class Medico extends UsuarioCadastrado {
         return consultasAgendadas;
     }
 
+    public String getPlano() {
+        return plano;
+    }
+
+    public void setPlano(String plano) {
+        this.plano = plano;
+    }
 }

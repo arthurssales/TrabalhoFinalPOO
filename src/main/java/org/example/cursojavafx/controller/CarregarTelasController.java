@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
+import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.service.UsuarioLogado;
 
 import java.io.IOException;
@@ -28,6 +29,16 @@ public class CarregarTelasController {
     }
 
 
+    public static void carregarRealizarConsulta(ActionEvent event)throws IOException{
+        Medico medico = UsuarioLogado.getMedicoLogado();
+
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("RealizarConsulta.fxml"));
+        Parent root = loader.load();
+        RealizarConsultaController controller = loader.getController();
+        controller.setNomePaciente(medico.getConsultasAgendadas().getFirst().getPaciente().getNome());
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
 
     public static void carregarMenuPaciente(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
