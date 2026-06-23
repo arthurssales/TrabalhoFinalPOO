@@ -20,6 +20,14 @@ public class CarregarTelasController {
     }
 
 
+    public static void carregarMenuMedico(ActionEvent event)throws IOException{
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("MenuMedico.fxml"));
+        Scene scene = new Scene(loader.load(),800,600);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+
 
     public static void carregarMenuPaciente(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));

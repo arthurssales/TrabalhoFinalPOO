@@ -19,7 +19,6 @@ public class MenuPacienteController {
     @FXML private Label boasVindas;
     @FXML private Label nomePaciente;
 
-    @FXML private Button botaoExames;
     @FXML private Button botaoConsulta;
     @FXML private Button botaoHistorico;
     @FXML private Button botaoFinanceiro;
@@ -44,10 +43,10 @@ public class MenuPacienteController {
         DadosPacienteController controller = loader.getController();
 
         controller.setNome(UsuarioLogado.getPacienteLogado().getNome());
-        controller.setSobrenome(UsuarioLogado.getPacienteLogado().getSobrenome());
         controller.setEmail(UsuarioLogado.getPacienteLogado().getEmail());
         controller.setSenha(UsuarioLogado.getPacienteLogado().getSenha());
-        //controller.setCpf(PacienteLogadoController.getPacienteLogado().getCpf();
+
+        controller.setIdade(UsuarioLogado.getPacienteLogado().getIdade());
 
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -66,14 +65,18 @@ public class MenuPacienteController {
         stage.setScene(scene);
     }
 
+    /*em nenhum momento o trabalho pede isso*/
     @FXML
     private void verExames(){
 
     }
 
     @FXML
-    private void verHistorico() {
-
+    private void verHistorico(ActionEvent event)throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("HistoricoConsultasPaciente.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML

@@ -24,10 +24,9 @@ public class FinanceiroPacienteController {
     @FXML private Label labelAvisoPlano;
     @FXML private ComboBox<String> comboTipoMedico;
     @FXML private Button botaoVoltar;
-
     private Paciente paciente;
 
-    /*@FXML
+    @FXML
     public void initialize() {
         paciente = UsuarioLogado.getPacienteLogado();
         if (paciente == null) return;
@@ -36,24 +35,19 @@ public class FinanceiroPacienteController {
         labelCustoTotal.setText(String.format("R$ %.2f", paciente.getCustoTotal()));
 
         // Plano ativo
-        if (paciente.getPlanoA() != null) {
+        if (paciente.getPlanoSaude().equals("Plano A")) {
             labelPlano.setText("Plano A");
-            labelValorPlano.setText(String.format("R$ %.2f por consulta", paciente.getPlanoA().getValorPorConsulta()));
-        } else if (paciente.getPlanoB() != null) {
-            labelPlano.setText("Plano B");
-            labelValorPlano.setText(String.format("R$ %.2f por consulta", paciente.getPlanoB().getValorPorConsulta()));
-        } else {
+            labelValorPlano.setText(String.format("Valor do plano: 800 R$/mês\nValor por consulta: %d R$.", 0));
+        }
+
+        else {
             labelPlano.setText("Sem plano");
-            labelValorPlano.setText("Valor varia por tipo de médico");
+            labelValorPlano.setText(String.format("R$ %.2f por consulta"));
         }
 
         // Preenche o ComboBox com os tipos de médico
-        comboTipoMedico.getItems().addAll(
-                "Cardiologista",
-                "Dermatologista",
-                "Pediatra"
-        );
-    }*/
+        comboTipoMedico.getItems().addAll("Cardiologista", "Dermatologista", "Pediatra");
+    }
 
     @FXML
     private void calcularValor(ActionEvent event) {

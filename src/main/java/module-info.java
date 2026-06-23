@@ -4,6 +4,8 @@ module org.example.cursojavafx {
     requires java.desktop;
     requires java.sql;
     requires java.compiler;
+    requires jdk.dynalink;
+    requires mysql.connector.j;
 
     opens org.example.cursojavafx to javafx.fxml;
     exports org.example.cursojavafx;

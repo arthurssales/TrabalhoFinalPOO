@@ -16,7 +16,7 @@
 
         <VBox prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000;" />
 
-        <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="250.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="250.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../imagem/Logo.png" />
             </image>
@@ -62,7 +62,7 @@
         </Label>
 
         <!-- Avaliação média -->
-        <Label layoutX="290.0" layoutY="360.0" text="Minha avaliação">
+        <Label layoutX="290.0" layoutY="398.0" prefHeight="60.0" prefWidth="219.0" text="Minha avaliação">
             <font><Font name="Century Gothic" size="18.0" /></font>
             <graphic>
                 <Button fx:id="botaoAvaliacao" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #FFF;">
@@ -72,7 +72,7 @@
         </Label>
 
         <!-- Label da avaliação média -->
-        <Label fx:id="labelAvaliacaoMedia" layoutX="290.0" layoutY="440.0" style="-fx-text-fill: #555;" text="Média: --">
+        <Label fx:id="labelAvaliacaoMedia" layoutX="290.0" layoutY="478.0" style="-fx-text-fill: #555;" text="Média: --">
             <font><Font name="Century Gothic" size="14.0" /></font>
         </Label>
         <Button fx:id="botaoConsultas" layoutX="275.0" layoutY="172.0" mnemonicParsing="false" onAction="#verConsultas" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CFF;">
@@ -100,6 +100,14 @@
                 </ImageView>
             </graphic>
         </Button>
+      <Label layoutX="275.0" layoutY="281.0" text="Realizar consulta">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+         <graphic>
+            <Button fx:id="botaoRealizaConsulta" mnemonicParsing="false" onAction="#realizarConsulta" prefHeight="60.0" prefWidth="60.0" />
+         </graphic>
+      </Label>
 
     </children>
 </AnchorPane>

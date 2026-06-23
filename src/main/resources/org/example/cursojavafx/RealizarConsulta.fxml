@@ -1,34 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
-<VBox spacing="10"
-      xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-        fx:controller="org.example.cursojavafx.controller.RealizarConsultaController">
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="lblPaciente"/>
-    <Label fx:id="lblData"/>
+<VBox spacing="10" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.RealizarConsultaController">
 
-    <Label text="Sintomas"/>
-    <TextArea fx:id="txtSintomas"/>
+          <Label fx:id="lblPaciente" />
+   <Label text="Paciente:">
+      <font>
+         <Font name="System Bold" size="21.0" />
+      </font>
+   </Label>
+   <Label fx:id="nomePaciente" prefHeight="30.0" prefWidth="182.0" text="Nome do paciente">
+      <font>
+         <Font size="17.0" />
+      </font>
+   </Label>
+    <Label fx:id="lblData" />
 
-    <Label text="Diagnóstico"/>
-    <TextArea fx:id="txtDiagnostico"/>
+          <Label text="Sintomas" />
+    <TextArea fx:id="txtSintomas" prefHeight="191.2" prefWidth="478.0" />
 
-    <Label text="Tratamento"/>
-    <TextArea fx:id="txtTratamento"/>
+          <Label text="Diagnóstico" />
+    <TextArea fx:id="txtDiagnostico" />
 
-    <Label text="Medicamentos"/>
-    <TextArea fx:id="txtMedicamentos"/>
+          <Label text="Tratamento" />
+    <TextArea fx:id="txtTratamento" />
 
-    <Label text="Exames"/>
-    <TextArea fx:id="txtExames"/>
+          <Label text="Medicamentos" />
+    <TextArea fx:id="txtMedicamentos" />
 
-    <Label text="Observações"/>
-    <TextArea fx:id="txtObservacoes"/>
+          <Label text="Exames" />
+    <TextArea fx:id="txtExames" />
 
-    <Button text="Finalizar Consulta"
-            onAction="#finalizarConsulta"/>
+          <Label text="Observações" />
+    <TextArea fx:id="txtObservacoes" />
+
+          <Button onAction="#finalizarConsulta" text="Finalizar Consulta" />
 
 </VBox>

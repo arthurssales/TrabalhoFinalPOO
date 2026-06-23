@@ -3,15 +3,21 @@ package org.example.cursojavafx.service;
 import org.example.cursojavafx.model.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Comparator;
 
 public class ConsultaService {
     private static boolean agendaLotada = false;
     private static boolean planoValido = true;
     private static boolean idadeValida = true;
+    private static boolean dataValida = true;
 
     public static Consulta marcarConsulta(Paciente paciente, Medico medico, LocalDate data){
+        if(data.isBefore(LocalDate.now())){
+            dataValida = false;
+            return null;
+        }
+
+        dataValida = true;
         if(!medico.podeAtender(paciente, data))
             return null;
 
@@ -38,17 +44,18 @@ public class ConsultaService {
 
         Paciente paciente = consulta.getPaciente();
 
-        if(!paciente.getPlanoSaude().equals("não tenho")){
+        if(!paciente.getPlanoSaude().equals("não tenho"))
             consulta.setValorPago(0);
-        }
 
-        /*if(paciente.getPlanoA() != null){
+        else
+            consulta.setValorPago(consulta.getMedico().getValorConsulta());
 
-            consulta.setValorPago(0);
-            return null;
-        }*/
+        consulta.getMedico().getConsultasRealizadas().add(consulta);
+        consulta.getMedico().getConsultasAgendadas().remove(consulta);
 
-        consulta.setValorPago(consulta.getMedico().getValorConsulta());
+        consulta.getPaciente().getConsultasAgendadas().remove(consulta);
+        consulta.getPaciente().getHistoricoConsultas().add(consulta);
+        consulta.setConsultaRealizada(true);
 
         return new Conta(paciente, consulta.getValorPago());
     }
@@ -57,7 +64,7 @@ public class ConsultaService {
 
         LocalDate hoje = LocalDate.now();
 
-        return medico.getConsultas()
+        return medico.getConsultasAgendadas()
                 .stream()
                 .filter(c -> !c.getData().isBefore(hoje))
                 .sorted(Comparator.comparing(Consulta::getData))

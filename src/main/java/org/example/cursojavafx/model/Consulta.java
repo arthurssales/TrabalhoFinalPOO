@@ -6,14 +6,17 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 
 public class Consulta {
-    Paciente paciente;
-    Medico medico;
-    LocalDate data;
+    private Paciente paciente;
+    private Medico medico;
+    private LocalDate data;
+
+    private boolean consultaRealizada;
 
     public Consulta(Paciente paciente, Medico medico, LocalDate data){
         this.paciente = paciente;
         this.medico = medico;
         this.data = data;
+        this.consultaRealizada = false;
         paciente.adicionarConsulta(this);
     }
     private String sintomas;
@@ -43,6 +46,13 @@ public class Consulta {
         return observacoes;
     }
 
+    public boolean isConsultaRealizada() {
+        return consultaRealizada;
+    }
+
+    public void setConsultaRealizada(boolean consultaRealizada) {
+        this.consultaRealizada = consultaRealizada;
+    }
 
     public Paciente getPaciente() {
         return paciente;

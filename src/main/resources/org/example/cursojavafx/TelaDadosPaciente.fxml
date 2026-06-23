@@ -12,71 +12,57 @@
             <Font name="Century Gothic Bold" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="100.0" text="Nome completo:">
+      <Label layoutX="68.0" layoutY="161.0" text="Nome completo:">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="148.0" text="Email:">
+      <Label layoutX="68.0" layoutY="212.0" text="Email:">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="197.0" text="Senha:">
+      <Label layoutX="68.0" layoutY="262.0" text="Senha:">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="252.0" text="CPF:">
+      <Label fx:id="senhaPaciente" layoutX="138.0" layoutY="262.0" text="Label">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailPaciente" layoutX="128.0" layoutY="212.0" text="Label">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="nomeCompletoPaciente" layoutX="223.0" layoutY="161.0" text="Label">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="69.0" layoutY="309.0" text="Idade:">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="cpfPaciente" layoutX="80.0" layoutY="252.0" text="Label">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="senhaPaciente" layoutX="90.0" layoutY="197.0" text="Label">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="emailPaciente" layoutX="80.0" layoutY="148.0" text="Label">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="nomePaciente" layoutX="175.0" layoutY="100.0" text="Label">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="21.0" layoutY="296.0" text="Idade:">
+      <Label layoutX="68.0" layoutY="360.0" text="Plano:">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="340.0" text="Nome do plano:">
-         <font>
-            <Font name="Century Gothic Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="botaoVolta" layoutX="66.0" layoutY="464.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
-      <Label fx:id="sobrenomePaciente" layoutX="263.0" layoutY="100.0" text="Label">
+      <Button fx:id="botaoVolta" layoutX="53.0" layoutY="499.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Label fx:id="idadePaciente" layoutX="139.0" layoutY="309.0" text="Label">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idadePaciente" layoutX="100.0" layoutY="296.0" text="Label">
+      <Label fx:id="nomePlano" layoutX="138.0" layoutY="360.0" text="Label">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="175.0" layoutY="340.0" text="Label">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-      </Label>
+      <Button fx:id="botaoAlteraDados" layoutX="586.0" layoutY="499.0" mnemonicParsing="false" onAction="#alterarDados" text="Alterar dados" />
    </children>
 </AnchorPane>

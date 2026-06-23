@@ -12,9 +12,10 @@ public abstract class Medico extends UsuarioCadastrado {
     protected double valorConsulta;
     protected int qntMaxConsulta;
     protected int qntConsultas;
-    private List<Consulta> consultas = new ArrayList<>();
+    private List<Consulta> consultasAgendadas = new ArrayList<>();
+    private List<Consulta> consultasRealizadas = new ArrayList<>();
+    private Consulta consultasDia[] = new Consulta[3];
     protected Queue<Paciente> filaPacientes = new LinkedList<>();
-
 
     public Medico(String nome, String sobrenome, String email, String senha, String sexo, int idade){
         super(nome,sobrenome,email,senha,sexo,idade);
@@ -23,7 +24,7 @@ public abstract class Medico extends UsuarioCadastrado {
     }
 
     public void adicionarConsulta(Consulta consulta){
-        consultas.add(consulta);
+        consultasAgendadas.add(consulta);
     }
 
     public void adicionarFilaPaciente(Paciente paciente){
@@ -36,7 +37,7 @@ public abstract class Medico extends UsuarioCadastrado {
 
 
     public boolean podeAtender(Paciente paciente, LocalDate data){
-        long consultasNoDia = consultas.stream().filter(c -> c.getData().equals(data)).count();
+        long consultasNoDia = consultasAgendadas.stream().filter(c -> c.getData().equals(data)).count();
 
         if(consultasNoDia >= qntMaxConsulta){
             filaPacientes.offer(paciente);
@@ -55,13 +56,13 @@ public abstract class Medico extends UsuarioCadastrado {
     }
 
     public void cancelarConsulta(Consulta consulta){
-        consultas.remove(consulta);
+        consultasAgendadas.remove(consulta);
 
         if(!filaPacientes.isEmpty()){
             Paciente proximo = filaPacientes.poll();
             Consulta novaConsulta = new Consulta(proximo,this,consulta.getData());
 
-            consultas.add(novaConsulta);
+            consultasAgendadas.add(novaConsulta);
             proximo.adicionarConsulta(novaConsulta);
 
             System.out.println("Paciente" + proximo.getNome() + " promovido da lista de espera");
@@ -124,12 +125,28 @@ public abstract class Medico extends UsuarioCadastrado {
         this.media = media;
     }*/
 
+    public List<Consulta> getConsultasRealizadas() {
+        return consultasRealizadas;
+    }
+
+    public void setConsultasRealizadas(List<Consulta> consultasRealizadas) {
+        this.consultasRealizadas = consultasRealizadas;
+    }
+
+    public Consulta[] getConsultasDia() {
+        return consultasDia;
+    }
+
+    public void setConsultasDia(Consulta consultasDia) {
+        this.consultasDia = new Consulta[]{consultasDia};
+    }
+
     public Queue<Paciente> getFilaPacientes() {
         return filaPacientes;
     }
 
-    public List<Consulta> getConsultas() {
-        return consultas;
+    public List<Consulta> getConsultasAgendadas() {
+        return consultasAgendadas;
     }
 
 }

@@ -9,14 +9,12 @@ public class Paciente extends UsuarioCadastrado {
     private double custoTotal;
     private List<Consulta> historicoConsultas = new ArrayList<>();
     private String planoSaude;
-    private List<Consulta> consultas = new ArrayList<>();
+    private List<Consulta> consultasAgendadas = new ArrayList<>();
 
-    public List<Consulta> getConsultas() {
-        return consultas;
-    }
+
 
     public void adicionarConsulta(Consulta consulta) {
-        consultas.add(consulta);
+        consultasAgendadas.add(consulta);
     }
     public Paciente(String nome, String sobrenome, String email, String senha, String sexo,int idade) {
         super(nome,sobrenome, email, senha, sexo,idade);
@@ -29,7 +27,7 @@ public class Paciente extends UsuarioCadastrado {
     }
     public List<Consulta> getConsultasRealizadas() {
         List<Consulta> realizadas = new ArrayList<>();
-        for (Consulta c : consultas) {
+        for (Consulta c : consultasAgendadas) {
             if (c.isRealizada()) {
                 realizadas.add(c);
             }
@@ -37,6 +35,17 @@ public class Paciente extends UsuarioCadastrado {
         return realizadas;
     }
 
+    public List<Consulta> getConsultasAgendadas() {
+        return consultasAgendadas;
+    }
+
+    public List<Consulta> getHistoricoConsultas() {
+        return historicoConsultas;
+    }
+
+    public void setHistoricoConsultas(List<Consulta> historicoConsultas) {
+        this.historicoConsultas = historicoConsultas;
+    }
 
     public boolean isPrimeiroAcesso(){
         return primeiroAcesso;

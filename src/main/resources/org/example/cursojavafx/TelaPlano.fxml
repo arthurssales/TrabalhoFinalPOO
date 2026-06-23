@@ -19,7 +19,7 @@
       </Label>
       <Pane layoutX="290.0" layoutY="120.0" prefHeight="262.0" prefWidth="200.0" style="-fx-border-color: #6fc5dd; -fx-background-radius: 75; -fx-border-color: #000000; -fx-border-radius: 75;">
          <children>
-            <Button fx:id="botaoPlanoA" layoutY="170.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #6fc5dd;" styleClass="botao-plano" text="Selecionar" textFill="#fffffff0">
+            <Button fx:id="botaoPlanoA" layoutY="168.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #6fc5dd;" styleClass="botao-plano" text="Selecionar" textFill="#fffffff0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -35,6 +35,11 @@
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="104.0" prefHeight="27.0" prefWidth="168.0" text="+Dermatologista">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="41.0" layoutY="221.0" prefHeight="27.0" prefWidth="118.0" text="Valor: 800 R$ / mês">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

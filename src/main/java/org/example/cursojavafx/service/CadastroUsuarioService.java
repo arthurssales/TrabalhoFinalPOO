@@ -6,23 +6,23 @@ import java.util.ArrayList;
 
 public class CadastroUsuarioService {
     private static final ArrayList<UsuarioCadastrado> usuariosCadastrados = new ArrayList<>();
-
     private Paciente pacienteLogado = null;
     private Medico medicoLogado = null;
 
     private static final ArrayList<Medico> medicosCadastrados = new ArrayList<>();
     private static ArrayList<Paciente> pacientesCadastrados = new ArrayList<>();
+
     private static final ArrayList<Cardiologista> cardiologistasCadastrados = new ArrayList<>();
     private static final ArrayList<Dermatologista> dermatologistasCadastrados = new ArrayList<>();
     private static final ArrayList<Pediatra> pediatrasCadastrados = new ArrayList<>();
 
-    private static final Paciente paciente1 = new Paciente("Arthur","dos Santos","arthur@gmail.com","1234","Masculino",20);
-    private static final Paciente paciente2 = new Paciente("Eduardo","Castelo Branco","dudu@gmail.com","1234","Masculino",20);
-    private static final Paciente paciente3 = new Paciente("Luiz","Miguel Castro","luiz@gmail.com","1234","Masculino",18);
+    private static final Paciente paciente1 = new Paciente("Arthur","dos Santos","a","1234","Masculino",20);
+    private static final Paciente paciente2 = new Paciente("Eduardo","Castelo Branco","d","1234","Masculino",20);
+    private static final Paciente paciente3 = new Paciente("Luiz","Miguel Castro","l","1234","Masculino",17);
 
-    private static final Cardiologista medico1 = new Cardiologista("Cardiologista1","Lucas","duduM@gmail.com","1234","Masculino",20);
-    private static final Dermatologista medico2 = new Dermatologista("Dermatologista1","Sales","arthurM@gmail.com","1234","Masculino",20);
-    private static final Pediatra medico3 = new Pediatra("Pediatra1","Luiz","luiz@gmail.com","1234","Masculino",18);
+    private static final Cardiologista medico1 = new Cardiologista("Cardiologista1","Lucas","cM","1234","Masculino",20);
+    private static final Dermatologista medico2 = new Dermatologista("Dermatologista1","Sales","dM","1234","Masculino",20);
+    private static final Pediatra medico3 = new Pediatra("Pediatra1","Miguel","pM","1234","Masculino",20);
     private static int i = 0;
 
     public static void cadastroInicial(){
@@ -49,15 +49,6 @@ public class CadastroUsuarioService {
         }
     }
 
-    /*----------PARA PACIENTES------------*/
-    public static boolean verificarCpf(int cpf){
-        for(Paciente paciente : pacientesCadastrados){
-            if(paciente.getCpf() == cpf)
-                return false;
-        }
-        return true;
-    }
-
     public void setPacienteLogado(Paciente pacienteLogado) {
         this.pacienteLogado = pacienteLogado;
     }
@@ -66,7 +57,6 @@ public class CadastroUsuarioService {
         return pacienteLogado;
     }
 
-    /*----------PARA TODOS----------*/
     public static boolean compararSenhas(String senha1, String senha2){
         if(senha1 == null || senha2 == null)
             return false;
@@ -134,15 +124,6 @@ public class CadastroUsuarioService {
                     medico.getSexo());
         }
     }
-
-    /*-----------PARA OS MEDICOS-------------*/
-
-    /*public static boolean verificarCrm(int crm){
-        for(Medico medico : medicosCadastrados){
-            if(medico.get)
-        }
-
-    }*/
 
     public static ArrayList<Paciente> getPacientesCadastrados() {
         return pacientesCadastrados;

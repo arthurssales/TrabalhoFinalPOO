@@ -1,67 +1,73 @@
 package org.example.cursojavafx.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Consulta;
 import org.example.cursojavafx.model.Conta;
 import org.example.cursojavafx.service.ConsultaService;
+import org.example.cursojavafx.service.UsuarioLogado;
+
+import java.io.IOException;
 
 public class RealizarConsultaController {
-    @FXML
-    private Label lblPaciente;
+    @FXML private Label lblPaciente;
 
-    @FXML
-    private Label lblData;
+    @FXML private Button botaoFinalizaConsulta;
+
+    @FXML private Label lblData;
 
     private Consulta consulta;
 
-    @FXML
-    private TextArea txtSintomas;
+    @FXML private TextArea txtSintomas;
+    @FXML private TextArea txtDiagnostico;
+    @FXML private TextArea txtTratamento;
+    @FXML private TextArea txtMedicamentos;
+    @FXML private TextArea txtExames;
+    @FXML private TextArea txtObservacoes;
+    @FXML private Button botaoHistorico;
+    @FXML private Label nomePaciente;
 
     @FXML
-    private TextArea txtDiagnostico;
+    private void verHistorico()throws IOException{
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("HistoricoConsultasPaciente.fxml"));
 
-    @FXML
-    private TextArea txtTratamento;
 
-    @FXML
-    private TextArea txtMedicamentos;
-
-    @FXML
-    private TextArea txtExames;
-
-    @FXML
-    private TextArea txtObservacoes;
-
-    public void setConsulta(Consulta consulta){
-        this.consulta = consulta;
     }
 
+
+
     @FXML
-    public void finalizarConsulta(){
+    private void finalizarConsulta(ActionEvent event) throws IOException {
+        consulta = UsuarioLogado.getMedicoLogado().getConsultasAgendadas().getFirst();
+        if(consulta == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Nenhuma consulta carregada.");
+            alert.showAndWait();
 
-        Conta conta =
-                ConsultaService.realizarConsulta(
-                        consulta,
-                        txtSintomas.getText(),
-                        txtDiagnostico.getText(),
-                        txtTratamento.getText(),
-                        txtMedicamentos.getText(),
-                        txtExames.getText(),
-                        txtObservacoes.getText()
-                );
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-        if(conta == null){
-            alert.setContentText("Consulta realizada com sucesso.");
+            return;
         }
-        else{
+
+        String sintomas = txtSintomas.getText();
+        String diagnostico = txtDiagnostico.getText();
+        String tratamento = txtTratamento.getText();
+        String medicamentos = txtMedicamentos.getText();
+        String exames = txtExames.getText();
+        String observacoes = txtObservacoes.getText();
+
+        Conta conta = ConsultaService.realizarConsulta(consulta, sintomas, diagnostico, tratamento, medicamentos, exames, observacoes);
+
+        if(conta.getValor() != 0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Consulta realizada. Conta gerada: R$ " + conta.getValor());
+            alert.showAndWait();
         }
 
-        alert.showAndWait();
+        CarregarTelasController.carregarMenuMedico(event);
     }
 }
