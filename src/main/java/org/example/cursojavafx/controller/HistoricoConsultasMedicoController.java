@@ -50,15 +50,23 @@ public class HistoricoConsultasMedicoController {
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
-        Medico medico = LoginUsuarioService.getMedicoLogado();
+
+        System.out.println("ENTROU NO VOLTAR");
+
         if(LoginUsuarioService.getMedicoLogado() != null){
+
+            System.out.println("VAI CARREGAR MENU MÉDICO");
+
             CarregarTelasController.carregarMenuMedico(event);
-        }
 
-        else
+            System.out.println("PASSOU DO CARREGAMENTO");
+        } else {
+
+            System.out.println("VAI CARREGAR REALIZAR CONSULTA");
+
             CarregarTelasController.carregarRealizarConsulta(event);
+        }
     }
-
     @FXML
     private void confirmar(ActionEvent event)throws IOException{
         if(consultaSelecionada != null){
