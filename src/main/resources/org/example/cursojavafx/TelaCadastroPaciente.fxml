@@ -24,7 +24,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <TextField fx:id="sobrenomeCadastro" layoutX="90.0" layoutY="246.0" promptText="Digite o seu sobrenome">
+            <TextField fx:id="sobrenomeCadastro" layoutX="90.0" layoutY="246.0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
@@ -38,11 +38,11 @@
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
             <Label layoutX="90.0" layoutY="144.0" text="Nome " />
-            <TextField fx:id="emailCadastro" layoutX="90.0" layoutY="311.0" promptText="exemplo@paciente.com">
+            <TextField fx:id="emailCadastro" layoutX="90.0" layoutY="311.0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <PasswordField fx:id="senhaCadastro" layoutX="90.0" layoutY="397.0" promptText="Digite a sua senha">
+            <PasswordField fx:id="senhaCadastro" layoutX="90.0" layoutY="397.0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></PasswordField>
@@ -54,11 +54,11 @@
                   <Font name="Yu Gothic UI Light" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="nomeCadastro" layoutX="90.0" layoutY="163.0" promptText="Digite o seu nome">
+            <TextField fx:id="nomeCadastro" layoutX="90.0" layoutY="163.0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <PasswordField fx:id="confirmarSenhaCadastro" layoutX="313.0" layoutY="393.0" promptText="Confirme a sua senha" />
+            <PasswordField fx:id="confirmarSenhaCadastro" layoutX="313.0" layoutY="393.0" />
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagem/Logo.png" />
@@ -69,13 +69,13 @@
             <Label layoutX="312.0" layoutY="229.0" text="Sexo" />
             <RadioButton fx:id="botaoMasculino" layoutX="313.0" layoutY="250.0" mnemonicParsing="false" onAction="#selecionarSexo" text="Masculino">
                <toggleGroup>
-                  <ToggleGroup fx:id="sexo" />
+                  <ToggleGroup fx:id="sexoc" />
                </toggleGroup>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </RadioButton>
-            <RadioButton fx:id="botaoFeminino" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" onAction="#selecionarSexo" text="Feminino" toggleGroup="$sexo" />
+            <RadioButton fx:id="botaoFeminino" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" onAction="#selecionarSexo" text="Feminino" toggleGroup="$sexoc" />
          </children>
       </Pane>
       <Pane layoutY="50.0" prefHeight="550.0" prefWidth="250.0" style="-fx-background-color: #6fc5dd;" />

@@ -3,7 +3,7 @@ package org.example.cursojavafx.service;
 import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.model.Paciente;
 
-public class UsuarioLogado {
+public class LoginUsuarioService {
     private static Paciente pacienteLogado;
     private static Medico medicoLogado;
 

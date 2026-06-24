@@ -17,8 +17,7 @@ import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Consulta;
 import org.example.cursojavafx.model.Medico;
-import org.example.cursojavafx.model.Paciente;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -45,14 +44,14 @@ public class HistoricoConsultasMedicoController {
         colunaData.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getData()));
         tabelaConsultas.setItems(consultas);
 
-        Medico medico = UsuarioLogado.getMedicoLogado();
+        Medico medico = LoginUsuarioService.getMedicoLogado();
         consultas.addAll(medico.getConsultasRealizadas());
     }
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
-        Medico medico = UsuarioLogado.getMedicoLogado();
-        if(UsuarioLogado.getMedicoLogado() != null){
+        Medico medico = LoginUsuarioService.getMedicoLogado();
+        if(LoginUsuarioService.getMedicoLogado() != null){
             CarregarTelasController.carregarMenuMedico(event);
         }
 

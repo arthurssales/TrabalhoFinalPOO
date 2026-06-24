@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.service.ConsultaService;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,12 +27,26 @@ public class ConfirmarConsultaController {
 
     @FXML
     public void selecionarData(){
-        UsuarioLogado.getPacienteLogado().marcarConsulta(medicoSelecionado);
+        LoginUsuarioService.getPacienteLogado().marcarConsulta(medicoSelecionado);
     }
 
     @FXML
     public void confirmar(){
-        ConsultaService.marcarConsulta(UsuarioLogado.getPacienteLogado(),medicoSelecionado, LocalDate.now());
+        LocalDate data = dataConsulta.getValue();
+
+        //Impedir o usuário de marcar uma consulta sem data
+        if(data == null){
+            alertarUsuario("Data inválida", "Selecione uma data para marcar a consulta!", false);
+            return;
+        }
+
+        //Impedir o usuário de marcar uma consulta em data inválida
+        if(data.isBefore(LocalDate.now())){
+            alertarUsuario("Data inválida", "A data da consulta não pode ser no passado!", false);
+            return;
+        }
+
+        ConsultaService.marcarConsulta(LoginUsuarioService.getPacienteLogado(),medicoSelecionado, data);
 
         if(!ConsultaService.isIdadeValida()){
             alertarUsuario("Consulta indisponível","Idade inválida!",false);
@@ -48,7 +62,6 @@ public class ConfirmarConsultaController {
 
         else{
             alertarUsuario("Consulta agendada","Sua consulta foi agendada com sucesso!",true);
-
         }
     }
 

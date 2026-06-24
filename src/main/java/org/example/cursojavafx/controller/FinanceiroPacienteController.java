@@ -2,16 +2,11 @@ package org.example.cursojavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Paciente;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 
@@ -28,7 +23,7 @@ public class FinanceiroPacienteController {
 
     @FXML
     public void initialize() {
-        paciente = UsuarioLogado.getPacienteLogado();
+        paciente = LoginUsuarioService.getPacienteLogado();
         if (paciente == null) return;
 
         // Custo total

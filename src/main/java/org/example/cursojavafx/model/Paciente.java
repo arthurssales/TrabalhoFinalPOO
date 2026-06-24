@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Paciente extends UsuarioCadastrado {
-    private int cpf;
+    private String cpf;
     private boolean primeiroAcesso = true;
     private double custoTotal;
     private List<Consulta> historicoConsultas = new ArrayList<>();
     private String planoSaude;
     private List<Consulta> consultasAgendadas = new ArrayList<>();
-
-
 
     public void adicionarConsulta(Consulta consulta) {
         consultasAgendadas.add(consulta);
@@ -47,6 +45,11 @@ public class Paciente extends UsuarioCadastrado {
         this.historicoConsultas = historicoConsultas;
     }
 
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public boolean isPrimeiroAcesso(){
         return primeiroAcesso;
     }
@@ -55,7 +58,7 @@ public class Paciente extends UsuarioCadastrado {
         this.primeiroAcesso = primeiroAcesso;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 

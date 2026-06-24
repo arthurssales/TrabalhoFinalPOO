@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -88,13 +88,13 @@ public class PlanoPacienteController {
         if(planoSelecionado != null){
             switch (planoSelecionado){
                 case "Plano A":
-                    UsuarioLogado.getPacienteLogado().setPlanoSaude("Plano A");
-                    UsuarioLogado.getPacienteLogado().setPrimeiroAcesso(false);
+                    LoginUsuarioService.getPacienteLogado().setPlanoSaude("Plano A");
+                    LoginUsuarioService.getPacienteLogado().setPrimeiroAcesso(false);
                     break;
 
                 case "não tenho":
-                    UsuarioLogado.getPacienteLogado().setPlanoSaude("não tenho");
-                    UsuarioLogado.getPacienteLogado().setPrimeiroAcesso(false);
+                    LoginUsuarioService.getPacienteLogado().setPlanoSaude("não tenho");
+                    LoginUsuarioService.getPacienteLogado().setPrimeiroAcesso(false);
             }
 
             CarregarTelasController.carregarMenuPaciente(event);

@@ -4,14 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.exception.ConsultaInvalidaException;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 
@@ -39,18 +38,7 @@ public class MenuPacienteController {
 
     @FXML
     private void verDados(ActionEvent event)throws IOException{
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaDadosPaciente.fxml"));
-        Parent root = loader.load();
-        DadosPacienteController controller = loader.getController();
-
-        controller.setNome(UsuarioLogado.getPacienteLogado().getNome());
-        controller.setEmail(UsuarioLogado.getPacienteLogado().getEmail());
-        controller.setSenha(UsuarioLogado.getPacienteLogado().getSenha());
-
-        controller.setIdade(UsuarioLogado.getPacienteLogado().getIdade());
-
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        CarregarTelasController.carregarDadosPaciente(event);
     }
 
     @FXML
@@ -76,8 +64,8 @@ public class MenuPacienteController {
 
     @FXML
     private void cancelarConsulta(ActionEvent event)throws IOException, ConsultaInvalidaException {
-        if (UsuarioLogado.getPacienteLogado().getConsultasAgendadas().isEmpty()){
-            System.out.println("Consultas agendadas: " + UsuarioLogado.getPacienteLogado().getConsultasAgendadas().size());
+        if (LoginUsuarioService.getPacienteLogado().getConsultasAgendadas().isEmpty()){
+            System.out.println("Consultas agendadas: " + LoginUsuarioService.getPacienteLogado().getConsultasAgendadas().size());
             throw new ConsultaInvalidaException("Nenhuma consulta agendada");
         }
 
@@ -97,7 +85,7 @@ public class MenuPacienteController {
 
     @FXML
     private void sair(javafx.event.ActionEvent event) throws IOException{
-        UsuarioLogado.setPacienteLogado(null);
+        LoginUsuarioService.setPacienteLogado(null);
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaInicial.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

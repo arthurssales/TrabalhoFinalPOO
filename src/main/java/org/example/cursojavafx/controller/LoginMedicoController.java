@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.service.CadastroUsuarioService;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 public class LoginMedicoController {
 
@@ -31,7 +31,7 @@ public class LoginMedicoController {
 
         for (Medico medico : CadastroUsuarioService.getMedicosCadastrados()) {
             if (email.getText().equals(medico.getEmail()) && senha.getText().equals(medico.getSenha())) {
-                UsuarioLogado.setMedicoLogado(medico);
+                LoginUsuarioService.setMedicoLogado(medico);
                 acessoPermitido = true;
                 break;
             }

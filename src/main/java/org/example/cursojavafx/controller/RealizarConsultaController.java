@@ -2,16 +2,14 @@ package org.example.cursojavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Consulta;
 import org.example.cursojavafx.model.Conta;
 import org.example.cursojavafx.service.ConsultaService;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 
@@ -46,7 +44,7 @@ public class RealizarConsultaController {
 
     @FXML
     private void finalizarConsulta(ActionEvent event) throws IOException {
-        consulta = UsuarioLogado.getMedicoLogado().getConsultasAgendadas().getFirst();
+        consulta = LoginUsuarioService.getMedicoLogado().getConsultasAgendadas().getFirst();
         if(consulta == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Nenhuma consulta carregada.");

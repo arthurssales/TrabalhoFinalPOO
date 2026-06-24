@@ -1,22 +1,17 @@
 package org.example.cursojavafx.controller;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.cursojavafx.model.Consulta;
-import org.example.cursojavafx.service.CadastroUsuarioService;
 import org.example.cursojavafx.service.ConsultaService;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class CancelarConsultaController {
 
@@ -44,7 +39,7 @@ public class CancelarConsultaController {
         tabelaConsultas.setItems(consultas);
 
         consultas.clear();
-        consultas.addAll(UsuarioLogado.getPacienteLogado().getConsultasAgendadas());
+        consultas.addAll(LoginUsuarioService.getPacienteLogado().getConsultasAgendadas());
     }
 
     @FXML

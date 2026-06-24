@@ -8,24 +8,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
-import org.example.cursojavafx.model.Cardiologista;
-import org.example.cursojavafx.model.Dermatologista;
 import org.example.cursojavafx.model.Medico;
-import org.example.cursojavafx.model.Pediatra;
 import org.example.cursojavafx.service.CadastroUsuarioService;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MarcarConsultaController implements Initializable {
@@ -70,7 +64,7 @@ public class MarcarConsultaController implements Initializable {
         */
         tabelaMedicos.setItems(medicos);
 
-        if(UsuarioLogado.getPacienteLogado().getPlanoSaude().equals("Plano A"))
+        if(LoginUsuarioService.getPacienteLogado().getPlanoSaude().equals("Plano A"))
             medicos.addAll(CadastroUsuarioService.getMedicosPlano());
 
         else

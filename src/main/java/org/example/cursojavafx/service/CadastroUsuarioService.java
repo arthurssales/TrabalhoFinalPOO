@@ -54,6 +54,10 @@ public class CadastroUsuarioService {
             usuariosCadastrados.addAll(medicosCadastrados);
 
             medicosPlano.addAll(medicosCadastrados.stream().filter(m -> "Plano A".equals(m.getPlano())).toList());
+
+            paciente1.setCpf("11111111111");
+            paciente2.setCpf("22222222222");
+            paciente3.setCpf("33333333333");
         }
     }
 
@@ -70,6 +74,10 @@ public class CadastroUsuarioService {
                 return false;
         }
         return true;
+    }
+
+    public static boolean verificarCpf(String cpf){
+        return !pacientesCadastrados.stream().filter(p -> p.getCpf().equals(cpf)).isParallel();
     }
 
     public static void cadastrar(UsuarioCadastrado usuarioCadastrado){

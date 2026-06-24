@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Paciente;
 import org.example.cursojavafx.service.CadastroUsuarioService;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 
@@ -40,7 +39,7 @@ public class LoginPacienteController {
 
             if(paciente.getEmail().equals(email.getText()) && paciente.getSenha().equals(senha.getText())){
                 acessoPermitido = true;
-                UsuarioLogado.setPacienteLogado(paciente);
+                LoginUsuarioService.setPacienteLogado(paciente);
                 break;
             }
         }
@@ -48,7 +47,7 @@ public class LoginPacienteController {
         if(acessoPermitido){
             System.out.println("Acesso permitido");
 
-            if(UsuarioLogado.getPacienteLogado().isPrimeiroAcesso()){
+            if(LoginUsuarioService.getPacienteLogado().isPrimeiroAcesso()){
 
                 FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaPlano.fxml"));
                 Scene scene = new Scene(loader.load(),800,600);

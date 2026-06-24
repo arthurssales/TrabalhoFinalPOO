@@ -12,6 +12,8 @@ import org.example.cursojavafx.model.Paciente;
 import org.example.cursojavafx.service.CadastroUsuarioService;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class CadastroPacienteController implements Comandos{
 
@@ -28,6 +30,7 @@ public class CadastroPacienteController implements Comandos{
     @FXML private TextField confirmarSenhaCadastro;
     @FXML private TextField cpfCadastro;
     @FXML private DatePicker dataDeNascimento;
+    @FXML private ToggleGroup sexoc;
 
     private boolean camposVazios = true;
 
@@ -42,26 +45,12 @@ public class CadastroPacienteController implements Comandos{
             sexo = null;
     }
 
-    /**TRATAR A EXCESSÃO DO CPF E IDADE
-     * - Não podem ser menores que 0
-     * - CPF deve ter o mínimo de 11 caracteres
-     * - Idade deve ser menor que 120**/
+    @FXML
     private String sexo;
     private int idade;
 
     @FXML
     public void confirmar(){
-        /*try{
-            int cpf = Integer.parseInt(cpfCadastro.getText());
-        }catch (NumberFormatException e){
-            System.out.println();
-        }
-
-        try{
-            idade = Integer.parseInt(idadeCadastro.getText());
-        }catch (NumberFormatException ex){
-        }*/
-
         verificarCampos();
         if(camposVazios){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -83,19 +72,50 @@ public class CadastroPacienteController implements Comandos{
             alerta.showAndWait();
         }
 
+        else if(!validarCpf(cpfCadastro.getText())){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setHeaderText("CPF inválido!");
+            alerta.setContentText("O CPF deve conter exatamente 11 números.");
+            alerta.showAndWait();
+        }
+        else if(CadastroUsuarioService.verificarCpf(cpfCadastro.getText())){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setHeaderText("CPF inválido!");
+            alerta.setContentText("Esse CPF já foi registrado.");
+            alerta.showAndWait();
+        }
+
         else{
+            LocalDate dataNascimento = dataDeNascimento.getValue();
+            if(dataNascimento == null){
+                System.out.println("Selecione uma data de nascimento.");
+                return;
+            }
+            LocalDate dataAtual = LocalDate.now();
+            idade = Period.between(dataNascimento,dataAtual).getYears();
+            if(idade > 120 || idade < 0){
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setContentText("Idade inválida! A idade deve ser entre 0 a 120 anos.");
+                alerta.showAndWait();
+                return;
+            }
+
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setContentText("Usuário cadastrado!");
             alerta.showAndWait();
 
             Paciente pacienteCadastrado = new Paciente(nomeCadastro.getText(),sobrenomeCadastro.getText(),emailCadastro.getText(),senhaCadastro.getText(),sexo,idade);
+            String cpfLimpo = cpfCadastro.getText().replaceAll("[^0-9]", "");
             CadastroUsuarioService.cadastrar(pacienteCadastrado);
+            pacienteCadastrado.setCpf(cpfLimpo);
 
             System.out.println("Nome: " + pacienteCadastrado.getNome());
+            System.out.println("Sobrenome: " + pacienteCadastrado.getSobrenome());
             System.out.println("email: " + pacienteCadastrado.getEmail());
             System.out.println("senha: " + pacienteCadastrado.getSenha());
             System.out.println("idade: " + pacienteCadastrado.getIdade());
             System.out.println("sexo: " + pacienteCadastrado.getSexo());
+            System.out.println("CPF: " + cpfLimpo);
 
             nomeCadastro.setText(null);
             sobrenomeCadastro.setText(null);
@@ -130,5 +150,13 @@ public class CadastroPacienteController implements Comandos{
                 senha == null ||
                 confirmarSenha == null ||
                 sexo == null;
+    }
+
+    private boolean validarCpf(String cpf){
+        if(cpf == null){
+            return false;
         }
+        String somenteNumeros = cpf.replaceAll("[^0-9]", "");
+        return somenteNumeros.length() == 11;
+    }
 }

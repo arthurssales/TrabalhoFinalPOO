@@ -27,17 +27,17 @@
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="senhaPaciente" layoutX="138.0" layoutY="262.0" text="Label">
+      <Label fx:id="senha" layoutX="138.0" layoutY="262.0" text="Label">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="emailPaciente" layoutX="128.0" layoutY="212.0" text="Label">
+      <Label fx:id="email" layoutX="128.0" layoutY="212.0" text="Label">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="nomeCompletoPaciente" layoutX="223.0" layoutY="161.0" text="Label">
+      <Label fx:id="nome" layoutX="223.0" layoutY="161.0" text="Label">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
@@ -53,16 +53,26 @@
          </font>
       </Label>
       <Button fx:id="botaoVolta" layoutX="53.0" layoutY="499.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
-      <Label fx:id="idadePaciente" layoutX="139.0" layoutY="309.0" text="Label">
+      <Label fx:id="idade" layoutX="139.0" layoutY="309.0" text="Label">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="nomePlano" layoutX="138.0" layoutY="360.0" text="Label">
+      <Label fx:id="plano" layoutX="138.0" layoutY="360.0" text="Label">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Label>
       <Button fx:id="botaoAlteraDados" layoutX="586.0" layoutY="499.0" mnemonicParsing="false" onAction="#alterarDados" text="Alterar dados" />
+      <Label layoutX="71.0" layoutY="416.0" text="CPF: ">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="cpf" layoutX="118.0" layoutY="416.0" text="Label">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

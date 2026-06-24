@@ -4,50 +4,48 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
-import org.example.cursojavafx.service.UsuarioLogado;
 
 import java.io.IOException;
 
 public class DadosPacienteController {
 
-    @FXML private Label nomeCompletoPaciente;
-    @FXML private Label sobrenomePaciente;
-    @FXML private Label emailPaciente;
-    @FXML private Label senhaPaciente;
-    @FXML private Label idadePaciente;
-    @FXML private Label nomePlano;
+    @FXML private Label nome;
+    @FXML private Label email;
+    @FXML private Label senha;
+    @FXML private Label idade;
+    @FXML private Label plano;
+    @FXML private Label cpf;
 
     @FXML private Button botaoVolta;
     @FXML private Button botaoAlteraDados;
 
     public void setNome(String nome){
-        nomeCompletoPaciente.setText(nome);
-    }
-
-    public void setSobrenome(String sobrenome){
-        sobrenomePaciente.setText(sobrenome);
+        this.nome.setText(nome);
     }
 
     public void setSenha(String senha){
-        senhaPaciente.setText(senha);
+        this.senha.setText(senha);
     }
 
     public void setEmail(String email){
-        emailPaciente.setText(email);
+        this.email.setText(email);
     }
 
     public void setIdade(int idade){
-           idadePaciente.setText(String.valueOf(idade));
+           this.idade.setText(String.valueOf(idade));
     }
 
     public void setPlano(String nomePlano){
-        this.nomePlano.setText(nomePlano);
+        this.plano.setText(nomePlano);
+    }
+
+    public void setCpf(String cpf){
+        this.cpf.setText(cpf);
     }
 
     @FXML

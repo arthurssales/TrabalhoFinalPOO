@@ -11,10 +11,9 @@ import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.exception.ConsultaInvalidaException;
 import org.example.cursojavafx.model.Medico;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 
 public class MenuMedicoController {
 
@@ -30,7 +29,7 @@ public class MenuMedicoController {
 
         @FXML
         public void initialize() {
-            Medico medico = UsuarioLogado.getMedicoLogado();
+            Medico medico = LoginUsuarioService.getMedicoLogado();
             if (medico != null) {
                 nomeMedico.setText(medico.getSobrenome());
 
@@ -51,7 +50,7 @@ public class MenuMedicoController {
 
         @FXML
         private void verHistorico(ActionEvent event)throws IOException, ConsultaInvalidaException{
-            Medico medico = UsuarioLogado.getMedicoLogado();
+            Medico medico = LoginUsuarioService.getMedicoLogado();
 
             if(medico.getConsultasRealizadas().isEmpty())
                 throw new ConsultaInvalidaException("Nnehum paciente foi atendido.");
@@ -64,7 +63,7 @@ public class MenuMedicoController {
 
         @FXML
         private void realizarConsulta(ActionEvent event)throws IOException, ConsultaInvalidaException{
-            Medico medico = UsuarioLogado.getMedicoLogado();
+            Medico medico = LoginUsuarioService.getMedicoLogado();
 
             if(medico.getConsultasAgendadas().isEmpty())
                 throw new ConsultaInvalidaException("Nenhuma consulta agendada");
@@ -74,7 +73,7 @@ public class MenuMedicoController {
 
         @FXML
         private void verConsultasAgendadas(ActionEvent event) throws IOException, ConsultaInvalidaException {
-            Medico medico = UsuarioLogado.getMedicoLogado();
+            Medico medico = LoginUsuarioService.getMedicoLogado();
 
             if(medico.getConsultasAgendadas().isEmpty()){
                 throw new ConsultaInvalidaException("Nenhuma consulta foi agendada");
@@ -89,7 +88,7 @@ public class MenuMedicoController {
 
         @FXML
         private void sair(ActionEvent event) throws IOException {
-            UsuarioLogado.setMedicoLogado(null);
+            LoginUsuarioService.setMedicoLogado(null);
             System.out.println("Médico deslogado!");
 
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaInicial.fxml"));

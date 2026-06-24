@@ -8,18 +8,34 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Medico;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.model.Paciente;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 
 public class CarregarTelasController {
 
+    public static void carregarDadosPaciente(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaDadosPaciente.fxml"));
+        Parent root = loader.load();
 
+        DadosPacienteController controller = loader.getController();
+        Paciente paciente = LoginUsuarioService.getPacienteLogado();
 
-    public static void carregarTelas(){
+        controller.setNome(paciente.getNome() + " " + paciente.getSobrenome());
+        controller.setEmail(paciente.getEmail());
+        controller.setSenha(paciente.getSenha());
+        controller.setCpf(String.valueOf(paciente.getCpf()));
+        controller.setIdade(paciente.getIdade());
+        controller.setPlano(paciente.getPlanoSaude());
 
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
+    public static void carregarProntuario(ActionEvent event){
+
+    }
 
     public static void carregarMenuMedico(ActionEvent event)throws IOException{
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("MenuMedico.fxml"));
@@ -28,14 +44,13 @@ public class CarregarTelasController {
         stage.setScene(scene);
     }
 
-
     public static void carregarRealizarConsulta(ActionEvent event)throws IOException{
-        Medico medico = UsuarioLogado.getMedicoLogado();
+        Medico medico = LoginUsuarioService.getMedicoLogado();
 
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("RealizarConsulta.fxml"));
         Parent root = loader.load();
         RealizarConsultaController controller = loader.getController();
-        controller.setNomePaciente(medico.getConsultasAgendadas().getFirst().getPaciente().getNome());
+        controller.setNomePaciente(medico.getConsultasAgendadas().getFirst().getPaciente().getNome() + medico.getConsultasAgendadas().getFirst().getPaciente().getNome());
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -44,7 +59,7 @@ public class CarregarTelasController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
         Parent root = loader.load();
         MenuPacienteController controller = loader.getController();
-        controller.setNomePaciente(UsuarioLogado.getPacienteLogado().getNome());
+        controller.setNomePaciente(LoginUsuarioService.getPacienteLogado().getNome());
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
     }

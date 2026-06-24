@@ -1,6 +1,5 @@
 package org.example.cursojavafx.controller;
 
-import com.mysql.cj.exceptions.ClosedOnExpiredPasswordException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -16,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Consulta;
-import org.example.cursojavafx.service.UsuarioLogado;
+import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -43,7 +42,7 @@ public class ConsultasAgendadasMedicoController {
         colunaData.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getData()));
         tabelaConsultas.setItems(consultas);
 
-        consultas.addAll(UsuarioLogado.getMedicoLogado().getConsultasAgendadas());
+        consultas.addAll(LoginUsuarioService.getMedicoLogado().getConsultasAgendadas());
     }
 
 
