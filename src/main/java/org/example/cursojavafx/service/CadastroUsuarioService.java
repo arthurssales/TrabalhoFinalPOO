@@ -3,8 +3,6 @@ package org.example.cursojavafx.service;
 import org.example.cursojavafx.model.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class CadastroUsuarioService {
     private static final ArrayList<UsuarioCadastrado> usuariosCadastrados = new ArrayList<>();
