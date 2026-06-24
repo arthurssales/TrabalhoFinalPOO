@@ -7,8 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
+import org.example.cursojavafx.model.Consulta;
 import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.model.Paciente;
+import org.example.cursojavafx.service.ConsultaService;
 import org.example.cursojavafx.service.LoginUsuarioService;
 
 import java.io.IOException;
@@ -33,8 +35,24 @@ public class CarregarTelasController {
         stage.setScene(new Scene(root));
     }
 
-    public static void carregarProntuario(ActionEvent event){
+    public static void carregarProntuario(ActionEvent event, Consulta consultaSelecionada)throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Prontuario.fxml"));
+        Parent root = loader.load();
+        ProntuarioController controller = loader.getController();
+        controller.setInformacoes(consultaSelecionada.getSintomas(),
+                consultaSelecionada.getDiagnostico(),
+                consultaSelecionada.getTratamento(),
+                consultaSelecionada.getObservacoes(),
+                consultaSelecionada.getReceita(),
+                consultaSelecionada.getExamesSolicitados(),
 
+                consultaSelecionada.getMedico().getNome(),
+                consultaSelecionada.getMedico().getClass().getSimpleName(),
+                consultaSelecionada.getPaciente().getNome(),
+                (String.valueOf(consultaSelecionada.getData())));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
     public static void carregarMenuMedico(ActionEvent event)throws IOException{

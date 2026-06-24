@@ -61,25 +61,8 @@ public class HistoricoConsultasMedicoController {
 
     @FXML
     private void confirmar(ActionEvent event)throws IOException{
-
         if(consultaSelecionada != null){
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Prontuario.fxml"));
-            Parent root = loader.load();
-            ProntuarioController controller = loader.getController();
-            controller.setInformacoes(consultaSelecionada.getSintomas(),
-                    consultaSelecionada.getDiagnostico(),
-                    consultaSelecionada.getTratamento(),
-                    consultaSelecionada.getObservacoes(),
-                    consultaSelecionada.getReceita(),
-                    consultaSelecionada.getExamesSolicitados(),
-
-                    consultaSelecionada.getMedico().getNome(),
-                    consultaSelecionada.getMedico().getClass().getSimpleName(),
-                    consultaSelecionada.getPaciente().getNome(),
-                    (String.valueOf(consultaSelecionada.getData())));
-
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            CarregarTelasController.carregarProntuario(event, consultaSelecionada);
         }
     }
 }

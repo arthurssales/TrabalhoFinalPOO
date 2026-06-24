@@ -7,13 +7,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Medico;
 import org.example.cursojavafx.service.ConsultaService;
 import org.example.cursojavafx.service.LoginUsuarioService;
-
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -46,6 +46,12 @@ public class ConfirmarConsultaController {
             return;
         }
 
+        //Impedir o usuário de marcar mais de uma consulta com o mesmo médico
+        if(LoginUsuarioService.getPacienteLogado().haConsultaPendente(medicoSelecionado)){
+            alertarUsuario("Consulta indisponível", "Você já tem uma consulta marcada com este médico.\nAguarde ela ser realizada antes de marcar outra.", false);
+            return;
+        }
+
         ConsultaService.marcarConsulta(LoginUsuarioService.getPacienteLogado(),medicoSelecionado, data);
 
         if(!ConsultaService.isIdadeValida()){
@@ -62,7 +68,12 @@ public class ConfirmarConsultaController {
 
         else{
             alertarUsuario("Consulta agendada","Sua consulta foi agendada com sucesso!",true);
+
         }
+    }
+
+    public void initialize(){
+        configurarDatePicker();
     }
 
     @FXML
@@ -87,6 +98,19 @@ public class ConfirmarConsultaController {
             alerta.setContentText(mensagem);
             alerta.showAndWait();
         }
+    }
+
+    private void configurarDatePicker() {
+        dataConsulta.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (date != null && date.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0c0;");
+                }
+            }
+        });
     }
 
     public static void setMedicoSelecionado(Medico medicoSelecionado1){

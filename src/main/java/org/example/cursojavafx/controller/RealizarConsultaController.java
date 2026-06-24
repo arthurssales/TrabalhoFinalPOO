@@ -2,15 +2,19 @@ package org.example.cursojavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
+import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Consulta;
 import org.example.cursojavafx.model.Conta;
 import org.example.cursojavafx.service.ConsultaService;
 import org.example.cursojavafx.service.LoginUsuarioService;
-
 import java.io.IOException;
 
 public class RealizarConsultaController {
@@ -30,11 +34,14 @@ public class RealizarConsultaController {
     @FXML private TextArea txtObservacoes;
     @FXML private Button botaoHistorico;
     @FXML private Label nomePaciente;
+    @FXML private Button botaoProntuario;
 
     @FXML
-    private void verHistorico()throws IOException{
-
-
+    private void verHistoricoConsultasPaciente(ActionEvent event)throws IOException{
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("HistoricoConsultasPaciente.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
     public void setNomePaciente(String nome){

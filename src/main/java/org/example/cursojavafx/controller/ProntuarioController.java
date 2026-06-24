@@ -58,7 +58,4 @@ public class ProntuarioController {
         this.nomePaciente.setText(nomePaciente);
         this.dataConsulta.setText(data);
     }
-
-
-
 }

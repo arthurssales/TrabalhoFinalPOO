@@ -9,6 +9,7 @@
 <VBox prefHeight="600.0" prefWidth="800.0" spacing="10" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cursojavafx.controller.RealizarConsultaController">
 
           <Label fx:id="lblPaciente" />
+   <Button fx:id="botaoProntuario" mnemonicParsing="false" onAction="#verHistoricoConsultasPaciente" text="Ver prontuário" />
    <Label text="Paciente:">
       <font>
          <Font name="System Bold" size="21.0" />

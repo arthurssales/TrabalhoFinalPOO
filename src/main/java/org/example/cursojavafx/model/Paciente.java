@@ -45,6 +45,14 @@ public class Paciente extends UsuarioCadastrado {
         this.historicoConsultas = historicoConsultas;
     }
 
+    public boolean haConsultaPendente(Medico medico){
+        for(Consulta c : consultasAgendadas){
+            if(c.getMedico() == medico && !c.isRealizada()){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
