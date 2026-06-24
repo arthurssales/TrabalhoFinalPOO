@@ -76,8 +76,9 @@ public class CadastroUsuarioService {
         return true;
     }
 
+    // Retorna true se o CPF já estiver cadastrado em algum paciente
     public static boolean verificarCpf(String cpf){
-        return !pacientesCadastrados.stream().filter(p -> p.getCpf().equals(cpf)).isParallel();
+        return pacientesCadastrados.stream().anyMatch(p -> p.getCpf().equals(cpf));
     }
 
     public static void cadastrar(UsuarioCadastrado usuarioCadastrado){

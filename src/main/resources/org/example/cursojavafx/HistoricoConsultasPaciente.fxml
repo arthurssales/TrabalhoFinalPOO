@@ -23,9 +23,9 @@
         <columns>
           <TableColumn fx:id="colunaNome" prefWidth="204.0" text="Médico" />
           <TableColumn fx:id="colunaEspecialidade" prefWidth="201.0" text="Especialidade" />
-            <TableColumn fx:id="colunaData" minWidth="0.79998779296875" prefWidth="204.0" text="Média de avaliações" />
-            <TableColumn prefWidth="117.0" text="Avaliações recentes" />
             <TableColumn prefWidth="83.0" text="Data" />
+            <TableColumn prefWidth="117.0" text="Avaliações recentes" />
+            <TableColumn fx:id="colunaData" minWidth="0.79998779296875" prefWidth="204.0" text="Média de avaliações" />
         </columns>
       </TableView>
       <Button fx:id="botaoVolta" layoutX="136.0" layoutY="503.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />

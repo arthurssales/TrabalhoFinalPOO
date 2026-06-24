@@ -12,74 +12,92 @@ import java.io.IOException;
 
 public class FinanceiroPacienteController {
 
-    @FXML private Label labelPlano;
-    @FXML private Label labelValorPlano;
-    @FXML private Label labelCustoTotal;
+    @FXML private Label custoPlano;
+    @FXML private Label custoConsultas;
+    @FXML private Label custoTotal;
     @FXML private Label labelValorConsulta;
     @FXML private Label labelAvisoPlano;
     @FXML private ComboBox<String> comboTipoMedico;
     @FXML private Button botaoVoltar;
-    private Paciente paciente;
 
     @FXML
     public void initialize() {
-        paciente = LoginUsuarioService.getPacienteLogado();
-        if (paciente == null) return;
 
-        // Custo total
-        labelCustoTotal.setText(String.format("R$ %.2f", paciente.getCustoTotal()));
+        Paciente paciente = LoginUsuarioService.getPacienteLogado();
 
-        // Plano ativo
-        if (paciente.getPlanoSaude().equals("Plano A")) {
-            labelPlano.setText("Plano A");
-            labelValorPlano.setText(String.format("Valor do plano: 800 R$/mês\nValor por consulta: %d R$.", 0));
+        if (paciente == null) {
+            return;
         }
 
-        else {
-            labelPlano.setText("Sem plano");
-            labelValorPlano.setText(String.format("R$ %.2f por consulta"));
+        custoTotal.setText(String.format("R$ %.2f", paciente.getCustoTotal()));
+
+        if ("Plano A".equals(paciente.getPlanoSaude())) {
+
+            custoPlano.setText("Plano A");
+            custoConsultas.setText("Valor do plano: 800 R$/mês\nValor por consulta: 0 R$");
+
+        } else {
+
+            custoPlano.setText("Sem plano");
+            custoConsultas.setText("Valor integral por consulta");
         }
 
-        // Preenche o ComboBox com os tipos de médico
-        comboTipoMedico.getItems().addAll("Cardiologista", "Dermatologista", "Pediatra");
+        comboTipoMedico.getItems().addAll(
+                "Cardiologista",
+                "Dermatologista",
+                "Pediatra"
+        );
     }
 
     @FXML
     private void calcularValor(ActionEvent event) {
 
         String selecionado = comboTipoMedico.getValue();
-        if (selecionado == null) return;
+
+        if (selecionado == null) {
+            return;
+        }
 
         double valorSemPlano;
+
         switch (selecionado) {
-            case "Cardiologista" -> valorSemPlano = 500.0;
-            case "Dermatologista" -> valorSemPlano = 200.0;
-            case "Pediatra" -> valorSemPlano = 250.0;
-            default -> valorSemPlano = 0.0;
+            case "Cardiologista":
+                valorSemPlano = 500.0;
+                break;
+
+            case "Dermatologista":
+                valorSemPlano = 200.0;
+                break;
+
+            case "Pediatra":
+                valorSemPlano = 250.0;
+                break;
+
+            default:
+                valorSemPlano = 0.0;
         }
 
-        /*LEMBRANDO QUE O PLANO RETIRA O VALOR DA CONSULTA POR COMPLETO*/
-        /*if (paciente.getPlanoSaude() != null) {
-            labelValorConsulta.setText(String.format("Valor com Plano A: R$ %.2f", paciente.getPlanoSaude().getValorPorConsulta()));
-            labelAvisoPlano.setText("");
-        }
+        Paciente paciente = LoginUsuarioService.getPacienteLogado();
+
+        if ("Plano A".equals(paciente.getPlanoSaude())) {
+
+            labelValorConsulta.setText("Valor da consulta: R$ 0,00");
+            labelAvisoPlano.setText("Coberto pelo plano.");
+
         } else {
-            labelValorConsulta.setText(String.format("Valor sem plano: R$ %.2f", valorSemPlano));
-            labelAvisoPlano.setText("Considere assinar um plano para pagar menos!");
-        }*/
+
+            labelValorConsulta.setText(
+                    String.format("Valor da consulta: R$ %.2f", valorSemPlano)
+            );
+
+            labelAvisoPlano.setText(
+                    "Você pagará o valor integral da consulta."
+            );
+        }
     }
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
-        /*FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("TelaMenuPaciente.fxml"));
-        Scene scene = new Scene(loader.load(), 800, 600);
-        MenuPacienteController controller = loader.getController();
-        if (paciente != null) {
-            controller.setNomePaciente(paciente.getNome());
-        }
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);*/
-
         CarregarTelasController.carregarMenuPaciente(event);
     }
 }

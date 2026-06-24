@@ -90,6 +90,13 @@ public class CadastroMedicoController implements Comandos {
             alerta.showAndWait();
         }
 
+        else if(!validarEmail(emailCadastro.getText())){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setHeaderText("E-mail inválido!");
+            alerta.setContentText("Digite um e-mail em um formato válido (ex: nome@dominio.com).");
+            alerta.showAndWait();
+        }
+
         else if(!CadastroUsuarioService.autenticarEmail(emailCadastro.getText())){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setContentText("Esse email já foi registrado!");
@@ -165,5 +172,13 @@ public class CadastroMedicoController implements Comandos {
                 sexo == null ||
                 especialidade == null ||
                 planoMedico == null;
+    }
+
+    // verifica se o email digitado segue um formato válido (antonio@gmail.com)
+    private boolean validarEmail(String email){
+        if(email == null){
+            return false;
+        }
+        return email.matches("^[\\w.+-]+@[\\w-]+\\.[a-zA-Z]{2,}$");
     }
 }

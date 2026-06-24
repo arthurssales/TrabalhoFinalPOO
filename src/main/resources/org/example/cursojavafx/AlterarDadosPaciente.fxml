@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFF;"
+            xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.cursojavafx.controller.AlterarDadosPacienteController">
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" />
+    <children>
+
+        <!-- Barra superior preta -->
+        <VBox prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000;" />
+
+        <!-- Logo -->
+        <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="250.0" layoutY="45.0"
+                   pickOnBounds="true" preserveRatio="true">
+            <image><Image url="@../../../imagem/Logo.png" /></image>
+        </ImageView>
+
+        <!-- Sidebar azul -->
+        <Pane layoutY="50.0" prefHeight="550.0" prefWidth="250.0" style="-fx-background-color: #6fc5dd;">
+            <children>
+                <Button fx:id="botaoVolta" layoutX="14.0" layoutY="461.0" mnemonicParsing="false"
+                        onAction="#voltar" prefHeight="39.0" prefWidth="140.0"
+                        style="-fx-background-color: #000000; -fx-background-radius: 100;"
+                        text="Voltar" textFill="WHITE">
+                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../../../imagem/PortaSair.png" /></image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </Pane>
+
+        <!-- Título -->
+        <Label layoutX="290.0" layoutY="75.0" text="Alterar dados">
+            <font><Font name="Century Gothic" size="22.0" /></font>
+        </Label>
+
+        <!-- ===== Card: trocar e-mail ===== -->
+        <Pane layoutX="290.0" layoutY="130.0" prefHeight="130.0" prefWidth="400.0"
+              style="-fx-background-color: #eaf8fc; -fx-border-color: #6fc5dd; -fx-border-radius: 10; -fx-background-radius: 10;">
+            <children>
+                <Label layoutX="20.0" layoutY="15.0" text="Alterar e-mail">
+                    <font><Font name="Century Gothic" size="15.0" /></font>
+                </Label>
+
+                <Label layoutX="20.0" layoutY="45.0" text="Novo e-mail:">
+                    <font><Font name="Century Gothic" size="12.0" /></font>
+                </Label>
+                <TextField fx:id="campoNovoEmail" layoutX="120.0" layoutY="42.0" prefWidth="240.0" />
+
+                <Button fx:id="botaoSalvarEmail" layoutX="20.0" layoutY="80.0" mnemonicParsing="false"
+                        onAction="#salvarEmail" prefHeight="32.0" prefWidth="140.0"
+                        style="-fx-background-color: #6fc5dd; -fx-background-radius: 100;"
+                        text="Salvar e-mail" textFill="WHITE">
+                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                    <font><Font name="Century Gothic" size="12.0" /></font>
+                </Button>
+            </children>
+        </Pane>
+
+        <!-- ===== Card: trocar senha ===== -->
+        <Pane layoutX="290.0" layoutY="280.0" prefHeight="220.0" prefWidth="400.0"
+              style="-fx-background-color: #eaf8fc; -fx-border-color: #6fc5dd; -fx-border-radius: 10; -fx-background-radius: 10;">
+            <children>
+                <Label layoutX="20.0" layoutY="15.0" text="Alterar senha">
+                    <font><Font name="Century Gothic" size="15.0" /></font>
+                </Label>
+
+                <Label layoutX="20.0" layoutY="50.0" text="Senha atual:">
+                    <font><Font name="Century Gothic" size="12.0" /></font>
+                </Label>
+                <PasswordField fx:id="campoSenhaAtual" layoutX="120.0" layoutY="47.0" prefWidth="240.0" />
+
+                <Label layoutX="20.0" layoutY="90.0" text="Nova senha:">
+                    <font><Font name="Century Gothic" size="12.0" /></font>
+                </Label>
+                <PasswordField fx:id="campoNovaSenha" layoutX="120.0" layoutY="87.0" prefWidth="240.0" />
+
+                <Label layoutX="20.0" layoutY="130.0" text="Confirmar nova senha:">
+                    <font><Font name="Century Gothic" size="12.0" /></font>
+                </Label>
+                <PasswordField fx:id="campoConfirmaSenha" layoutX="20.0" layoutY="150.0" prefWidth="340.0" />
+
+                <Button fx:id="botaoSalvarSenha" layoutX="20.0" layoutY="180.0" mnemonicParsing="false"
+                        onAction="#salvarSenha" prefHeight="32.0" prefWidth="140.0"
+                        style="-fx-background-color: #6fc5dd; -fx-background-radius: 100;"
+                        text="Salvar senha" textFill="WHITE">
+                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                    <font><Font name="Century Gothic" size="12.0" /></font>
+                </Button>
+            </children>
+        </Pane>
+
+    </children>
+</AnchorPane>

@@ -31,18 +31,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="botaoAlteraSenha" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#alterarSenha" prefHeight="40.0" prefWidth="122.0" style="-fx-background-color: #000000; -fx-background-radius: 100;" text="Alterar senha" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../imagem/Senha.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Button fx:id="botaoSair" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#sair" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000; -fx-background-radius: 100;" text="Sair" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
                <cursor>
                   <Cursor fx:constant="HAND" />

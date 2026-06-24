@@ -59,6 +59,13 @@ public class CadastroPacienteController implements Comandos{
             alerta.showAndWait();
         }
 
+        else if(!validarEmail(emailCadastro.getText())){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setHeaderText("E-mail inválido!");
+            alerta.setContentText("Digite um e-mail em um formato válido (ex: nome@dominio.com).");
+            alerta.showAndWait();
+        }
+
         else if(!CadastroUsuarioService.autenticarEmail(emailCadastro.getText())) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setContentText("Esse email já foi registrado!");
@@ -158,5 +165,13 @@ public class CadastroPacienteController implements Comandos{
         }
         String somenteNumeros = cpf.replaceAll("[^0-9]", "");
         return somenteNumeros.length() == 11;
+    }
+
+    // verifica se o email digitado tem um formato válido (jose@email.com)
+    private boolean validarEmail(String email){
+        if(email == null){
+            return false;
+        }
+        return email.matches("^[\\w.+-]+@[\\w-]+\\.[a-zA-Z]{2,}$");
     }
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.example.cursojavafx.HelloApplication;
 import org.example.cursojavafx.model.Medico;
@@ -21,6 +22,9 @@ public class ConfirmarConsultaController {
 
     @FXML Button botaoVolta;
     @FXML Button botaoConfirma;
+    @FXML Label labelNomeMedico;
+    @FXML Label labelEspecialidade;
+    @FXML Label labelValorConsulta;
     private static Medico medicoSelecionado;
 
     @FXML DatePicker dataConsulta;
@@ -74,6 +78,17 @@ public class ConfirmarConsultaController {
 
     public void initialize(){
         configurarDatePicker();
+        preencherDadosMedico();
+    }
+
+    // Mostra na tela quem é o médico selecionado e o valor da consulta,
+    // assim o paciente confirma visualmente antes de marcar
+    private void preencherDadosMedico() {
+        if (medicoSelecionado == null) return;
+
+        labelNomeMedico.setText(medicoSelecionado.getNome() + " " + medicoSelecionado.getSobrenome());
+        labelEspecialidade.setText(medicoSelecionado.getClass().getSimpleName());
+        labelValorConsulta.setText(String.format("Valor: R$ %.2f", medicoSelecionado.getValorConsulta()));
     }
 
     @FXML
