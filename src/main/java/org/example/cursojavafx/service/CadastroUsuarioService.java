@@ -15,19 +15,19 @@ public class CadastroUsuarioService {
 
     private static final Paciente paciente1 = new Paciente("Arthur","dos Santos","a","1234","Masculino",20);
     private static final Paciente paciente2 = new Paciente("Eduardo","Castelo Branco","d","1234","Masculino",18);
-    private static final Paciente paciente3 = new Paciente("Luiz","Miguel Castro","l","1234","Masculino",17);
+    private static final Paciente paciente3 = new Paciente("Luiz","Uchôa Castro","l","1234","Masculino",18);
 
-    private static final Cardiologista cardiologista1 = new Cardiologista("Cardiologista1","Lucas","1","1","Masculino",20,"Plano A");
-    private static final Cardiologista cardiologista2 = new Cardiologista("Cardiologista2","Lucas","2","1","Masculino",20,"Plano A");
-    private static final Cardiologista cardiologista3 = new Cardiologista("Cardiologista3","Lucas","3","1","Masculino",20,"Sem plano");
+    private static final Cardiologista cardiologista1 = new Cardiologista("Eduardo","Lucas","1","1","Masculino",21,"Plano A");
+    private static final Cardiologista cardiologista2 = new Cardiologista("Roberto","Pêra","2","1","Masculino",24,"Plano A");
+    private static final Cardiologista cardiologista3 = new Cardiologista("Lucas","Tolentino","3","1","Masculino",28,"Sem plano");
 
-    private static final Dermatologista dermatologista1 = new Dermatologista("Dermatologista1","Sales","4","1234","Masculino",20,"Plano A");
-    private static final Dermatologista dermatologista2 = new Dermatologista("Dermatologista2","Sales","5","1234","Masculino",20,"Plano A");
-    private static final Dermatologista dermatologista3 = new Dermatologista("Dermatologista3","Sales","6","1234","Masculino",20,"Plano A");
+    private static final Dermatologista dermatologista1 = new Dermatologista("Arthur","Sales","4","1234","Masculino",20,"Plano A");
+    private static final Dermatologista dermatologista2 = new Dermatologista("Manoel","Gomes","5","1234","Masculino",56,"Plano A");
+    private static final Dermatologista dermatologista3 = new Dermatologista("Cristiano","Aveiro","6","1234","Masculino",41,"Plano A");
 
-    private static final Pediatra pediatra1 = new Pediatra("Pediatra1","Miguel","7","1234","Masculino",20,"Plano A");
-    private static final Pediatra pediatra2 = new Pediatra("Pediatra2","Miguel","8","1234","Masculino",20,"Sem plano");
-    private static final Pediatra pediatra3 = new Pediatra("Pediatra3","Miguel","9","1234","Masculino",20,"Sem plano");
+    private static final Pediatra pediatra1 = new Pediatra("Luiz","Miguel","7","1234","Masculino",20,"Plano A");
+    private static final Pediatra pediatra2 = new Pediatra("William","Afton","8","1234","Masculino",54,"Sem plano");
+    private static final Pediatra pediatra3 = new Pediatra("Jhon","Marston","9","1234","Masculino",38,"Sem plano");
 
     private static int i = 0;
 
